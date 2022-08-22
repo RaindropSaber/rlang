@@ -1,0 +1,27 @@
+{
+  "name": "rlang-editor",
+  "version": "0.0.0",
+  "description": "rlang runs the kernel",
+  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com/"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@alife/hspider-runtime": "^1.0.3"
+  }
+}
