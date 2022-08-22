@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+node_modules/**/*
+.DS_Store
+.vscode/**/*
+package-lock.json
+packages/**/lib
+lerna-debug.log
