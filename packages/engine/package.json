@@ -1,6 +1,6 @@
 {
   "name": "rlang-engine",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "rlang runs the kernel",
   "author": "raindropsaber@gmail.com",
   "homepage": "",

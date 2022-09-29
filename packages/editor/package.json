@@ -1,11 +1,11 @@
 {
   "name": "rlang-editor",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "rlang runs the kernel",
-  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
+  "author": "raindropsaber@gmail.com",
   "homepage": "",
   "license": "MIT",
-  "main": "lib/index.ts",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -13,15 +13,43 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": "https://registry.npm.alibaba-inc.com/"
-  },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "prepublish": "npm run build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "@alife/hspider-runtime": "^1.0.3"
+  "dependencies": {
+    "@antv/x6": "^1.34.2",
+    "@antv/x6-react-components": "^1.1.18",
+    "@antv/x6-react-shape": "^1.6.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.59",
+    "@types/react": "^16.0.0",
+    "@types/react-dom": "^16.0.0",
+    "mobx": "^6.6.2",
+    "mobx-react": "^7.5.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.55.0",
+    "styled-components": "^5.3.5",
+    "typescript": "~4.7.0",
+    "web-vitals": "^2.1.4",
+    "@types/styled-components": "^5.1.26"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
