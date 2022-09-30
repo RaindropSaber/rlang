@@ -3,7 +3,6 @@ import React from 'react';
 import { Menu, Menubar } from '@antv/x6-react-components';
 import '@antv/x6-react-components/es/menu/style/index.css';
 import '@antv/x6-react-components/es/menubar/style/index.css';
-// import 'antd/dist/antd.css';
 
 const MenuItem = Menu.Item; // eslint-disable-line
 const SubMenu = Menu.SubMenu;
@@ -17,7 +16,7 @@ export default class RMenubar extends React.Component<any> {
 
   render() {
     return (
-      <div style={{}}>
+      <div>
         <div
           style={{
             background: '#f5f5f5',
@@ -34,108 +33,62 @@ export default class RMenubar extends React.Component<any> {
                   this.onMenuClick(...e);
                 }}
               >
-                <MenuItem
-                  name='newFile'
-                  hotkey='Cmd+N'
-                >
+                <MenuItem name='newFile' hotkey='Cmd+N'>
                   New File
                 </MenuItem>
-                <MenuItem
-                  name='newWindow'
-                  hotkey='Cmd+Shift+N'
-                >
+                <MenuItem name='newWindow' hotkey='Cmd+Shift+N'>
                   New Window
                 </MenuItem>
                 <Divider />
-                <MenuItem
-                  name='open'
-                  hotkey='Cmd+O'
-                >
+                <MenuItem name='open' hotkey='Cmd+O'>
                   Open...
                 </MenuItem>
                 <MenuItem name='openWorkspace'>Open Workspace...</MenuItem>
                 <Divider />
-                <MenuItem
-                  name='save'
-                  hotkey='Cmd+S'
-                >
+                <MenuItem name='save' hotkey='Cmd+S'>
                   Save
                 </MenuItem>
-                <MenuItem
-                  name='saveAs'
-                  hotkey='Cmd+Shift+S'
-                >
+                <MenuItem name='saveAs' hotkey='Cmd+Shift+S'>
                   Save As...
                 </MenuItem>
-                <MenuItem
-                  name='saveAll'
-                  hotkey='Cmd+Alt+S'
-                >
+                <MenuItem name='saveAll' hotkey='Cmd+Alt+S'>
                   Save All
                 </MenuItem>
               </Menu>
             </MenubarItem>
             <MenubarItem text='Edit'>
               <Menu>
-                <MenuItem
-                  name='undo'
-                  hotkey='Cmd+Z'
-                >
+                <MenuItem name='undo' hotkey='Cmd+Z'>
                   Undo
                 </MenuItem>
-                <MenuItem
-                  name='redo'
-                  hotkey='Cmd+Shift+Z'
-                >
+                <MenuItem name='redo' hotkey='Cmd+Shift+Z'>
                   Redo
                 </MenuItem>
                 <Divider />
-                <MenuItem
-                  name='cut'
-                  hotkey='Cmd+X'
-                >
+                <MenuItem name='cut' hotkey='Cmd+X'>
                   Cut
                 </MenuItem>
-                <MenuItem
-                  name='copy'
-                  hotkey='Cmd+C'
-                >
+                <MenuItem name='copy' hotkey='Cmd+C'>
                   Copy
                 </MenuItem>
-                <MenuItem
-                  name='paste'
-                  hotkey='Cmd+V'
-                  disabled={true}
-                >
+                <MenuItem name='paste' hotkey='Cmd+V' disabled={true}>
                   Paste
                 </MenuItem>
                 <Divider />
-                <MenuItem
-                  name='find'
-                  hotkey='Cmd+F'
-                >
+                <MenuItem name='find' hotkey='Cmd+F'>
                   Find
                 </MenuItem>
-                <MenuItem
-                  name='replace'
-                  hotkey='Cmd+Alt+F'
-                >
+                <MenuItem name='replace' hotkey='Cmd+Alt+F'>
                   Replace
                 </MenuItem>
               </Menu>
             </MenubarItem>
             <MenubarItem text='View'>
               <Menu>
-                <MenuItem
-                  name='zen'
-                  hotkey='Cmd+K Z'
-                >
+                <MenuItem name='zen' hotkey='Cmd+K Z'>
                   Zen Mode
                 </MenuItem>
-                <MenuItem
-                  name='fullscreen'
-                  hotkey='Cmd+Shift+F'
-                >
+                <MenuItem name='fullscreen' hotkey='Cmd+Shift+F'>
                   Full Screen
                 </MenuItem>
                 <Divider />
@@ -147,16 +100,10 @@ export default class RMenubar extends React.Component<any> {
                   <MenuItem name='show-panel'>Show Panel</MenuItem>
                 </SubMenu>
                 <Divider />
-                <MenuItem
-                  name='zoomin'
-                  hotkey='Cmd +'
-                >
+                <MenuItem name='zoomin' hotkey='Cmd +'>
                   Zoom In
                 </MenuItem>
-                <MenuItem
-                  name='zoomout'
-                  hotkey='Cmd -'
-                >
+                <MenuItem name='zoomout' hotkey='Cmd -'>
                   Zoom Out
                 </MenuItem>
               </Menu>

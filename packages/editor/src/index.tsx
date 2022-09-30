@@ -1,25 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import Editor from './Editor';
-import { GraphModelContext, Model } from './Model/index';
-import '@antv/x6-react-shape';
+import App from './App';
+import { Editor } from './Model/Editor';
 
-class RLangEditor {
-  container: HTMLElement;
+class RlangEditor {
   opt: any;
-  constructor(opt: any) {
+  editor: Editor;
+  constructor(opt?: any) {
     this.opt = opt;
-    this.container = opt.container;
+    this.editor = new Editor();
   }
-  render() {
-    ReactDOM.render(
-      <GraphModelContext.Provider value={new Model()}>
-        <Editor />
-      </GraphModelContext.Provider>,
-      this.container
-    );
+  render(root: HTMLElement) {
+    ReactDOM.render(<App editor={this.editor} />, root, () => {
+      this.editor.init();
+    });
+  }
+  addNodeToStencil() {
+    this.editor;
   }
 }
 
-export default RLangEditor;
+export default RlangEditor;

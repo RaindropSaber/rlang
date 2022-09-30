@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
-import rlangEditor from 'rlang-editor';
-import { GraphModelContext, Model } from './Model/index';
+import RlangEditor from 'rlang-editor';
 
-ReactDOM.render(
-  <GraphModelContext.Provider value={new Model()}>
-    <App />
-  </GraphModelContext.Provider>,
-  document.getElementById('root')
-);
+const editor = new RlangEditor();
+
+editor.render(document.getElementById('root')!);
