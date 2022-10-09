@@ -1,11 +1,11 @@
 import React, { createRef, useEffect, useRef, useState, useContext, ElementRef } from 'react';
 import { Button, Drawer, Radio, Space } from 'antd';
-import { EditorContext, Editor } from '../Model/Editor';
+import Editor, { EditorContext } from '../Model/RlangEditor';
 import { observer } from 'mobx-react';
 
 const Panel: React.FC = observer((props) => {
-  const editorContext = useContext<Editor>(EditorContext);
-  const selectedNode = editorContext.selectedNode.toJSON();
+  const editor = useContext<Editor>(EditorContext);
+  const selectedNode = editor.state.selectedNode.toJSON();
   const drawerDOM = useRef(null);
 
   return (
@@ -16,7 +16,7 @@ const Panel: React.FC = observer((props) => {
           autoFocus={false}
           title='Basic Drawer'
           placement='right'
-          onClose={() => editorContext.setStencilStatus(false)}
+          onClose={() => editor.state.setStencilStatus(false)}
           open={!!selectedNode.length}
           getContainer={drawerDOM.current as any}
           className={'rlang-drawer-mask'}

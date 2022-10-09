@@ -1,17 +1,16 @@
-import { makeAutoObservable, observable, action } from 'mobx';
 import React, { createContext, RefObject } from 'react';
-import { Graph, Shape, Addon, Model, Cell } from '@antv/x6';
-class Editor {
+import { Graph, Shape, Addon, Model, Cell, CellView } from '@antv/x6';
+import EditorStore from './Store';
+export default class Editor {
   graphDOM!: RefObject<HTMLElement>;
   stencilDOM!: RefObject<HTMLElement>;
   graph!: Graph;
   stencil!: Addon.Stencil;
 
-  isStencilEnabled = observable.box(true);
-  selectedNode = observable<Cell<Cell.Properties>>([]);
+  state: EditorStore;
 
   constructor() {
-    // makeAutoObservable(this);
+    this.state = new EditorStore(this);
   }
 
   setGraphDOM(graphDOM: RefObject<HTMLElement>) {
@@ -26,6 +25,7 @@ class Editor {
     this.initGraph();
     this.initKeyboardEvent();
     this.initSelectEvent();
+    this.initEdgeMoveEvent();
     this.initStencil();
   }
 
@@ -44,11 +44,14 @@ class Editor {
       connecting: {
         snap: true,
         allowBlank: false,
-        allowMulti: false,
+        allowMulti: 'withPort',
         allowLoop: false,
         allowNode: false,
         allowEdge: false,
         highlight: true,
+        router: {
+          name: 'metro',
+        },
       },
       selecting: {
         enabled: true,
@@ -64,8 +67,20 @@ class Editor {
         color: '#fffbe6', // 设置画布背景颜色
       },
       grid: {
-        size: 10, // 网格大小 10px
-        visible: true, // 渲染网格背景
+        size: 10,
+        visible: true,
+        type: 'doubleMesh',
+        args: [
+          {
+            color: '#eee', // 主网格线颜色
+            thickness: 1, // 主网格线宽度
+          },
+          {
+            color: '#ddd', // 次网格线颜色
+            thickness: 1, // 次网格线宽度
+            factor: 4, // 主次网格线间隔
+          },
+        ],
       },
     });
   }
@@ -125,10 +140,18 @@ class Editor {
   }
   private initSelectEvent() {
     this.graph.on('node:selected', (args: { cell: Cell; node: Node; options: Model.SetOptions }) => {
-      this.setSelectNode();
+      this.state.setSelectNode();
     });
     this.graph.on('node:unselected', (args: { cell: Cell; node: Node; options: Model.SetOptions }) => {
-      this.setSelectNode();
+      this.state.setSelectNode();
+    });
+  }
+  private initEdgeMoveEvent() {
+    this.graph.on('edge:mouseenter', ({ edge }) => {
+      edge.addTools(['source-arrowhead', 'target-arrowhead']);
+    });
+    this.graph.on('edge:mouseleave', ({ edge }) => {
+      edge.removeTools();
     });
   }
   private initStencil() {
@@ -188,16 +211,8 @@ class Editor {
     });
     this.stencil.load([r, r.clone(), r.clone()], '基础类型');
   }
-  setSelectNode = action(() => {
-    const cells = this.graph.getSelectedCells();
-    this.selectedNode.replace(cells);
-  });
-
-  setStencilStatus = action((value = !this.isStencilEnabled.get()) => {
-    this.isStencilEnabled.set(value);
-  });
 }
 
-const EditorContext = createContext<Editor>((null as unknown) as Editor);
+// const EditorContext = createContext<Editor>((null as unknown) as Editor);
 
-export { EditorContext, Editor };
+// export { EditorContext, Editor };

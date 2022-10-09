@@ -1,9 +1,8 @@
 import React, { createRef, useEffect, useRef, useState, useContext } from 'react';
-import { Graph, Shape, Addon, Model, Cell } from '@antv/x6';
-import { EditorContext } from '../Model/Editor';
+import { EditorContext } from '../Model/RlangEditor';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
-import '@antv/x6-react-shape';
+// import '@antv/x6-react-shape';
 
 const GraphCanvas = styled.div`
   flex: 1;

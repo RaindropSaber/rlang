@@ -8,7 +8,7 @@ import Menubar from './Compontents/Menubar';
 import Stencil from './Compontents/Stencil';
 import Graph from './Compontents/Graph';
 import Panel from './Compontents/Panel';
-import { EditorContext, Editor } from './Model/Editor';
+import Editor, { EditorContext } from './Model/RlangEditor';
 
 const Container = styled.div`
   display: flex;

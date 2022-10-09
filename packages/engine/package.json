@@ -24,6 +24,7 @@
   "dependencies": {
     "commander": "^9.3.0",
     "rlang-grammar": "^0.0.0",
-    "rlang-kernel": "^0.0.0"
+    "rlang-kernel": "^0.0.0",
+    "rlang-loader": "^0.0.0"
   }
 }
