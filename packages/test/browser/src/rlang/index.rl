@@ -64,13 +64,7 @@
     {
       "id": "P1",
       "packageId": "PPPPP",
-      "attribute": {}
-    }
-  ],
-  "links": [
-    {
-      "id": "L1",
-      "pipeId": "P1",
+      "attribute": {},
       "OUT": {
         "nodeId": "R1",
         "portId": "out"
@@ -81,8 +75,9 @@
       }
     },
     {
-      "id": "L2",
-      "pipeId": "P1",
+      "id": "P1",
+      "packageId": "PPPPP",
+      "attribute": {},
       "OUT": {
         "nodeId": "T1",
         "portId": "out"

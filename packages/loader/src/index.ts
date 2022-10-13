@@ -13,7 +13,7 @@ module.exports = (source: string) => {
     .reduce(
       (acc, item, index) => {
         const pkgStatementId = 'DependPackage_' + index;
-        acc.inj.push(`graph.injectPackage('${item.id}',${pkgStatementId})`);
+        acc.inj.push(`graph.injectPackage('${item.packageName}',${pkgStatementId})`);
         acc.imp.push(`import ${pkgStatementId} from '${item.packageName}'`);
         return acc;
       },
@@ -48,7 +48,7 @@ module.exports.cjs = (source: string) => {
     .reduce(
       (acc, item, index) => {
         const pkgStatementId = 'DependPackage_' + index;
-        acc.inj.push(`graph.injectPackage('${item.id}',${pkgStatementId})`);
+        acc.inj.push(`graph.injectPackage('${item.packageName}',${pkgStatementId})`);
         acc.imp.push(`const ${pkgStatementId} = require('${item.packageName}').default;`);
         return acc;
       },

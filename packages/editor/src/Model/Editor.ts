@@ -1,6 +1,11 @@
 import React, { createContext, RefObject } from 'react';
-import { Graph, Shape, Addon, Model, Cell, CellView } from '@antv/x6';
+import { Graph, Shape, Addon, Model, Cell, CellView, Node } from '@antv/x6';
 import EditorStore from './Store';
+
+interface T_X6JSON {
+  cells: Cell.Properties[];
+}
+
 export default class Editor {
   graphDOM!: RefObject<HTMLElement>;
   stencilDOM!: RefObject<HTMLElement>;
@@ -50,15 +55,16 @@ export default class Editor {
         allowEdge: false,
         highlight: true,
         router: {
-          name: 'metro',
+          name: 'manhattan',
         },
+        connector: 'rounded',
       },
       selecting: {
         enabled: true,
         multiple: true,
         rubberband: true,
         showNodeSelectionBox: true,
-        showEdgeSelectionBox: true,
+        // showEdgeSelectionBox: true,
       },
       keyboard: true,
       clipboard: true,
@@ -148,7 +154,24 @@ export default class Editor {
   }
   private initEdgeMoveEvent() {
     this.graph.on('edge:mouseenter', ({ edge }) => {
-      edge.addTools(['source-arrowhead', 'target-arrowhead']);
+      edge.addTools([
+        {
+          name: 'vertices',
+          args: {
+            // addable: false,
+            // stopPropagation: false,
+          },
+        },
+        {
+          name: 'button-remove',
+          args: {
+            distance: '50%',
+          },
+        },
+        'boundary',
+        'source-arrowhead',
+        'target-arrowhead',
+      ]);
     });
     this.graph.on('edge:mouseleave', ({ edge }) => {
       edge.removeTools();
@@ -160,59 +183,28 @@ export default class Editor {
     }
     this.stencil = new Addon.Stencil({
       target: this.graph,
-      groups: [{ name: '基础类型' }],
-    });
-    this.stencilDOM.current?.appendChild(this.stencil.container);
-    const r = new Shape.Rect({
-      width: 70,
-      height: 40,
-      attrs: {
-        rect: { fill: '#31D0C6', stroke: '#4B4A67', strokeWidth: 6 },
-        text: { text: 'rect', fill: 'white' },
+      stencilGraphWidth: 300,
+      stencilGraphHeight: 500,
+      getDragNode: (sourceNode, options) => {
+        const targetNode = sourceNode.clone();
+        targetNode.size(150, 100);
+        return targetNode;
       },
-      ports: [
+      groups: [
         {
-          id: 'port1',
-          attrs: {
-            circle: {
-              r: 6,
-              magnet: true,
-              stroke: '#31d0c6',
-              strokeWidth: 2,
-              fill: '#fff',
-            },
-          },
-        },
-        {
-          id: 'port2',
-          attrs: {
-            circle: {
-              r: 6,
-              magnet: true,
-              stroke: '#31d0c6',
-              strokeWidth: 2,
-              fill: '#fff',
-            },
-          },
-        },
-        {
-          id: 'port3',
-          attrs: {
-            circle: {
-              r: 6,
-              magnet: true,
-              stroke: '#31d0c6',
-              strokeWidth: 2,
-              fill: '#fff',
-            },
+          name: '基础类型',
+          layoutOptions: {
+            columns: 1,
+            rowHeight: 40,
           },
         },
       ],
     });
-    this.stencil.load([r, r.clone(), r.clone()], '基础类型');
+    this.stencilDOM.current?.appendChild(this.stencil.container);
+  }
+  loadStencil(groups: { [groupName: string]: (Node<Node.Properties> | Node.Metadata)[] }) {
+    Object.keys(groups).forEach((groupName) => {
+      this.stencil.load(groups[groupName], groupName);
+    });
   }
 }
-
-// const EditorContext = createContext<Editor>((null as unknown) as Editor);
-
-// export { EditorContext, Editor };

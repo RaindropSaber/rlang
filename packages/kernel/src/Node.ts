@@ -1,4 +1,4 @@
-import { T_Node, T_Pipe, NodeType, T_Package, T_Port, RuntimeEnv, PortType, T_JSON, PackageType } from 'rlang-grammar';
+import { T_Node, T_Pipe, NodeType, T_Package, T_Port, RuntimeEnv, PortType, T_JSON, PackageType, T_NodePackage } from 'rlang-grammar';
 import Port from './Port';
 import Graph from './Graph';
 import Context from './Context';
@@ -12,7 +12,7 @@ type T_$I<G extends DefaultPortsDTO> = (id: keyof G[PortType.I]) => G_PORT<G[Por
 type T_$O<G extends DefaultPortsDTO> = (id: keyof G[PortType.O]) => G_PORT<G[PortType.O]>;
 
 export default class Node<G_PortsDTO extends DefaultPortsDTO> {
-  static meta: T_Package<PackageType.Node>['meta'];
+  static meta: T_NodePackage;
   option: T_NodeOption;
   graph!: Graph;
   ports!: Port<Pick<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>[keyof G_PortsDTO[PortType]]>[];
@@ -26,6 +26,9 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO> {
   }
   get type() {
     return this.meta.type;
+  }
+  get nodeType() {
+    return this.meta.nodeType;
   }
   get name() {
     return this.meta.name;
@@ -49,7 +52,7 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO> {
   private attachPort(option: T_Port) {
     const port = new Port<Pick<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>[keyof G_PortsDTO[PortType]]>(option);
     port.attach(this);
-    option.meta.type === PortType.I
+    option.type === PortType.I
       ? this.portIMap.set(port.id as keyof G_PortsDTO[PortType.I], port)
       : this.portOMap.set(port.id as keyof G_PortsDTO[PortType.O], port);
     return port;

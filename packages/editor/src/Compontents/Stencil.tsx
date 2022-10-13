@@ -33,7 +33,7 @@ const RStencil: React.FC = observer(() => {
         forceRender={true}
         headerStyle={{ display: 'none' }}
         bodyStyle={{ padding: 0 }}
-        width={200}
+        width={300}
       >
         <Stencil ref={stencilDOM}></Stencil>
       </Drawer>

@@ -1,0 +1,23 @@
+{
+  "name": "rlang-node-receiver",
+  "version": "0.0.1",
+  "desc": "rlang-node-receiver",
+  "type": "Node",
+  "group": "",
+  "shape": "./shape.ts",
+  "panel": "./panel.ts",
+  "runtime": "./runtime.ts",
+  "portsDTO": "./portsDTO.ts",
+  "env": [
+    "Browser",
+    "Node"
+  ],
+  "ports": [
+    {
+      "name": "out",
+      "type": "OUT",
+      "desc": "outout"
+    }
+  ],
+  "nodeType": "R"
+}

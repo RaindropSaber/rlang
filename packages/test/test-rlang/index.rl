@@ -1,153 +1,243 @@
 {
-  "nodes": [
-    {
-      "id": "R1",
-      "packageId": "RRRRR",
-      "ports": [
+    "nodes": [
         {
-          "id": "out",
-          "meta": {
-            "name": "Rout",
-            "type": "OUT",
-            "desc": "any"
-          }
-        }
-      ],
-      "attribute": {
-        "ddd": "ddd"
-      }
-    },
-    {
-      "id": "T1",
-      "packageId": "TTTTT",
-      "ports": [
-        {
-          "id": "in",
-          "meta": {
-            "name": "Tin",
-            "type": "IN",
-            "desc": "any"
-          }
+            "id": "195a709d-f8db-4847-bce5-77ae3619a09b",
+            "packageName": "rlang-node-receiver",
+            "attribute": {},
+            "ports": [
+                {
+                    "id": "out",
+                    "name": "Rout",
+                    "type": "OUT",
+                    "desc": "Rout"
+                }
+            ],
+            "view": {
+                "position": {
+                    "x": 450,
+                    "y": 120
+                },
+                "shape": "BaseNode",
+                "data": {
+                    "pkg": {
+                        "name": "rlang-node-receiver",
+                        "type": "Node",
+                        "nodeType": "R",
+                        "desc": "传递hello world",
+                        "env": [
+                            "Node",
+                            "Browser"
+                        ],
+                        "ports": [
+                            {
+                                "id": "out",
+                                "name": "Rout",
+                                "type": "OUT",
+                                "desc": "any"
+                            }
+                        ]
+                    }
+                },
+                "zIndex": 1
+            }
         },
         {
-          "id": "out",
-          "meta": {
-            "name": "Tout",
-            "type": "OUT",
-            "desc": "any"
-          }
-        }
-      ],
-      "attribute": {
-        "ddd": "ddd"
-      }
-    },
-    {
-      "id": "W1",
-      "packageId": "WWWWW",
-      "ports": [
+            "id": "a0b922cf-c38b-4fdc-a9b5-fd8b3bd0e0d5",
+            "packageName": "rlang-node-transfer",
+            "attribute": {},
+            "ports": [
+                {
+                    "id": "in",
+                    "name": "Tin",
+                    "type": "IN",
+                    "desc": "Tin"
+                },
+                {
+                    "id": "out",
+                    "name": "Tout",
+                    "type": "OUT",
+                    "desc": "Tout"
+                }
+            ],
+            "view": {
+                "position": {
+                    "x": 860,
+                    "y": 280
+                },
+                "shape": "BaseNode",
+                "data": {
+                    "pkg": {
+                        "name": "rlang-node-transfer",
+                        "type": "Node",
+                        "nodeType": "T",
+                        "desc": "透传body",
+                        "env": [
+                            "Node",
+                            "Browser"
+                        ],
+                        "ports": [
+                            {
+                                "id": "in",
+                                "name": "Tin",
+                                "type": "IN",
+                                "desc": "any"
+                            },
+                            {
+                                "id": "out",
+                                "name": "Tout",
+                                "type": "OUT",
+                                "desc": "any"
+                            }
+                        ]
+                    }
+                },
+                "zIndex": 2
+            }
+        },
         {
-          "id": "in",
-          "meta": {
-            "name": "Win",
-            "type": "IN",
-            "desc": "any"
-          }
+            "id": "5217ee3a-f4a9-4a75-84f5-ea485eb8bb9c",
+            "packageName": "rlang-node-write",
+            "attribute": {},
+            "ports": [
+                {
+                    "id": "in",
+                    "name": "Win",
+                    "type": "IN",
+                    "desc": "Win"
+                }
+            ],
+            "view": {
+                "position": {
+                    "x": 920,
+                    "y": 660
+                },
+                "shape": "BaseNode",
+                "data": {
+                    "pkg": {
+                        "name": "rlang-node-write",
+                        "type": "Node",
+                        "nodeType": "W",
+                        "desc": "打印body",
+                        "env": [
+                            "Node",
+                            "Browser"
+                        ],
+                        "ports": [
+                            {
+                                "id": "in",
+                                "name": "Win",
+                                "type": "IN",
+                                "desc": "any"
+                            }
+                        ]
+                    }
+                },
+                "zIndex": 3
+            }
         }
-      ],
-      "attribute": {
-        "ddd": "ddd"
-      }
-    }
-  ],
-  "pipes": [
-    {
-      "id": "P1",
-      "packageId": "PPPPP",
-      "attribute": {}
-    }
-  ],
-  "links": [
-    {
-      "id": "L1",
-      "pipeId": "P1",
-      "OUT": {
-        "nodeId": "R1",
-        "portId": "out"
-      },
-      "IN": {
-        "nodeId": "T1",
-        "portId": "in"
-      }
-    },
-    {
-      "id": "L2",
-      "pipeId": "P1",
-      "OUT": {
-        "nodeId": "T1",
-        "portId": "out"
-      },
-      "IN": {
-        "nodeId": "W1",
-        "portId": "in"
-      }
-    }
-  ],
-  "pkgs": [
-    {
-      "id": "RRRRR",
-      "packageName": "rlang-node-receiver",
-      "packageType": "Node",
-      "meta": {
-        "name": "第一个R节点",
-        "type": "R",
-        "desc": "传递hello world",
-        "env": [
-          "Node",
-          "Browser"
-        ]
-      }
-    },
-    {
-      "id": "TTTTT",
-      "packageName": "rlang-node-transfer",
-      "packageType": "Node",
-      "meta": {
-        "name": "第一个T节点",
-        "type": "T",
-        "desc": "透传body",
-        "env": [
-          "Node",
-          "Browser"
-        ]
-      }
-    },
-    {
-      "id": "WWWWW",
-      "packageName": "rlang-node-write",
-      "packageType": "Node",
-      "meta": {
-        "name": "第一个W节点",
-        "type": "W",
-        "desc": "打印body",
-        "env": [
-          "Node",
-          "Browser"
-        ]
-      }
-    },
-    {
-      "id": "PPPPP",
-      "packageName": "rlang-node-basepipe",
-      "packageType": "Pipe",
-      "meta": {
-        "name": "第一个Pipe",
-        "desc": "什么也不做",
-        "env": [
-          "Node",
-          "Browser"
-        ]
-      }
-    }
-  ]
+    ],
+    "pipes": [
+        {
+            "id": "aab80a0c-dc9a-471c-aa9d-ded4b89370e0",
+            "packageName": "rlang-node-basepipe",
+            "attribute": {},
+            "IN": {
+                "nodeId": "a0b922cf-c38b-4fdc-a9b5-fd8b3bd0e0d5",
+                "portId": "in"
+            },
+            "OUT": {
+                "nodeId": "195a709d-f8db-4847-bce5-77ae3619a09b",
+                "portId": "out"
+            },
+            "view": {
+                "zIndex": 4
+            }
+        },
+        {
+            "id": "bfc7b7a3-d2f7-4ffb-a63e-d4727bfb8126",
+            "packageName": "rlang-node-basepipe",
+            "attribute": {},
+            "IN": {
+                "nodeId": "5217ee3a-f4a9-4a75-84f5-ea485eb8bb9c",
+                "portId": "in"
+            },
+            "OUT": {
+                "nodeId": "a0b922cf-c38b-4fdc-a9b5-fd8b3bd0e0d5",
+                "portId": "out"
+            },
+            "view": {
+                "zIndex": 5
+            }
+        }
+    ],
+    "pkgs": [
+        {
+            "name": "rlang-node-receiver",
+            "type": "Node",
+            "nodeType": "R",
+            "desc": "传递hello world",
+            "env": [
+                "Node",
+                "Browser"
+            ],
+            "ports": [
+                {
+                    "id": "out",
+                    "name": "Rout",
+                    "type": "OUT",
+                    "desc": "any"
+                }
+            ]
+        },
+        {
+            "name": "rlang-node-transfer",
+            "type": "Node",
+            "nodeType": "T",
+            "desc": "透传body",
+            "env": [
+                "Node",
+                "Browser"
+            ],
+            "ports": [
+                {
+                    "id": "in",
+                    "name": "Tin",
+                    "type": "IN",
+                    "desc": "any"
+                },
+                {
+                    "id": "out",
+                    "name": "Tout",
+                    "type": "OUT",
+                    "desc": "any"
+                }
+            ]
+        },
+        {
+            "name": "rlang-node-write",
+            "type": "Node",
+            "nodeType": "W",
+            "desc": "打印body",
+            "env": [
+                "Node",
+                "Browser"
+            ],
+            "ports": [
+                {
+                    "id": "in",
+                    "name": "Win",
+                    "type": "IN",
+                    "desc": "any"
+                }
+            ]
+        },
+        {
+            "name": "rlang-node-basepipe",
+            "type": "Pipe",
+            "env": [
+                "Node",
+                "Browser"
+            ]
+        }
+    ]
 }
