@@ -9,12 +9,12 @@ module.exports = (source: string) => {
   const ast: T_AST = JSON.parse(source);
 
   const { imp, inj } = ast.pkgs
-    .filter((v) => v.packageName)
+    .filter((v) => v.name)
     .reduce(
       (acc, item, index) => {
         const pkgStatementId = 'DependPackage_' + index;
-        acc.inj.push(`graph.injectPackage('${item.packageName}',${pkgStatementId})`);
-        acc.imp.push(`import ${pkgStatementId} from '${item.packageName}'`);
+        acc.inj.push(`graph.injectPackage('${item.name}',${pkgStatementId})`);
+        acc.imp.push(`import ${pkgStatementId} from '${item.name}'`);
         return acc;
       },
       { imp: [], inj: [] } as T_packageTPL
@@ -44,12 +44,12 @@ module.exports.cjs = (source: string) => {
   const ast: T_AST = JSON.parse(source);
 
   const { imp, inj } = ast.pkgs
-    .filter((v) => v.packageName)
+    .filter((v) => v.name)
     .reduce(
       (acc, item, index) => {
         const pkgStatementId = 'DependPackage_' + index;
-        acc.inj.push(`graph.injectPackage('${item.packageName}',${pkgStatementId})`);
-        acc.imp.push(`const ${pkgStatementId} = require('${item.packageName}').default;`);
+        acc.inj.push(`graph.injectPackage('${item.name}',${pkgStatementId})`);
+        acc.imp.push(`const ${pkgStatementId} = require('${item.name}').default;`);
         return acc;
       },
       { imp: [], inj: [] } as T_packageTPL

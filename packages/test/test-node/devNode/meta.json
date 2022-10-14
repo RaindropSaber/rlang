@@ -12,12 +12,12 @@
     "Browser",
     "Node"
   ],
+  "nodeType": "R",
   "ports": [
     {
       "name": "out",
       "type": "OUT",
       "desc": "outout"
     }
-  ],
-  "nodeType": "R"
+  ]
 }

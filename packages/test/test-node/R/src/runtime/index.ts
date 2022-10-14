@@ -15,7 +15,7 @@ interface T_RPortDTO {
     out2: {
       hi: string;
     };
-    [ssss: string]: any;
+    // [ssss: string]: any;
   };
 }
 
@@ -28,6 +28,6 @@ export default class R extends Node<T_RPortDTO> {
   };
   ready($I: T_$I<T_RPortDTO>, $O: T_$O<T_RPortDTO>) {
     // console.log('R ready');
-    this.send({ hello: 'world' }).to($O('out'));
+    this.send({ hello2: 'world' }).to($O('out'));
   }
 }

@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+const { program } = require('commander');
+const compiler = require('../lib').default;
+const path = require('path');
+
+program
+  .argument('<root>')
+  .option('--app <app>', 'app')
+  .action((root, options) => {
+    root = path.resolve(process.cwd(), root);
+    compiler(root);
+  });
+
+program.parse(process.argv);

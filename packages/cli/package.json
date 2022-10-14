@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "bin": {
-    "rlang": "./bin/rlang"
+    "rlang-cli": "./bin/rlang-cli"
   },
   "directories": {
     "lib": "lib",

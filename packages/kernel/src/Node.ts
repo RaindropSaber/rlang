@@ -4,22 +4,22 @@ import Graph from './Graph';
 import Context from './Context';
 
 type T_NodeOption = Pick<T_Node, 'id' | 'attribute' | 'ports'>;
-type T_PortMap<G_PortsDTO> = Map<keyof G_PortsDTO, G_PORT<G_PortsDTO>>;
 
-type G_PORT<G_PortsDTO> = Port<Pick<G_PortsDTO, keyof G_PortsDTO>[keyof G_PortsDTO]>;
-type DefaultPortsDTO = { [PortType.I]: {}; [PortType.O]: {} };
-type T_$I<G extends DefaultPortsDTO> = (id: keyof G[PortType.I]) => G_PORT<G[PortType.I]>;
-type T_$O<G extends DefaultPortsDTO> = (id: keyof G[PortType.O]) => G_PORT<G[PortType.O]>;
+type T_PortMap<K> = Map<keyof K, Port<Get<K, keyof K>>>;
+type Get<T, K> = K extends keyof T ? T[K] : never;
+type DefaultPortsDTO = { [PortType.I]: { [portId: string]: {} }; [PortType.O]: { [portId: string]: {} } };
+export type $I<G extends DefaultPortsDTO> = <T extends keyof G[PortType.I]>(id: T) => Port<Get<G[PortType.I], T>>;
+export type $O<G extends DefaultPortsDTO> = <T extends keyof G[PortType.O]>(id: T) => Port<Get<G[PortType.O], T>>;
 
-export default class Node<G_PortsDTO extends DefaultPortsDTO> {
+export default class Node<G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO> {
   static meta: T_NodePackage;
   option: T_NodeOption;
   graph!: Graph;
-  ports!: Port<Pick<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>[keyof G_PortsDTO[PortType]]>[];
+  ports!: Port<Get<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>>[];
   portIMap!: T_PortMap<G_PortsDTO[PortType.I]>;
   portOMap!: T_PortMap<G_PortsDTO[PortType.O]>;
-  $I!: T_$I<G_PortsDTO>;
-  $O!: T_$O<G_PortsDTO>;
+  $I!: $I<G_PortsDTO>;
+  $O!: $O<G_PortsDTO>;
 
   get meta() {
     return (this.constructor as typeof Node).meta;
@@ -52,9 +52,7 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO> {
   private attachPort(option: T_Port) {
     const port = new Port<Pick<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>[keyof G_PortsDTO[PortType]]>(option);
     port.attach(this);
-    option.type === PortType.I
-      ? this.portIMap.set(port.id as keyof G_PortsDTO[PortType.I], port)
-      : this.portOMap.set(port.id as keyof G_PortsDTO[PortType.O], port);
+    option.type === PortType.I ? this.portIMap.set(port.id, port) : this.portOMap.set(port.id, port);
     return port;
   }
   private initPort() {
@@ -83,8 +81,8 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO> {
     this.graph = graph;
   }
 
-  ready($I: T_$I<G_PortsDTO>, $O: T_$O<G_PortsDTO>) {}
-  send(msg: any) {
-    return new Context(msg);
+  ready($I: $I<G_PortsDTO>, $O: $O<G_PortsDTO>) {}
+  send<T>(msg: T) {
+    return new Context<T>(msg);
   }
 }
