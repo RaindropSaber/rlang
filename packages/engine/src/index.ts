@@ -5,7 +5,7 @@ import RlangLoader from 'rlang-loader';
 import path from 'path';
 import Module from 'module';
 
-export default (rlangFileName: string): Graph => {
+module.exports = (rlangFileName: string): Graph => {
   // TODO: AST 检测
   const source = fs.readFileSync(rlangFileName, 'utf-8');
   const code = (RlangLoader as any).cjs(source);

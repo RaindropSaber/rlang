@@ -1,30 +1,33 @@
 {
   "name": "rlang-cli",
   "version": "0.0.1",
-  "description": "rlang runs the kernel",
-  "author": "raindropsaber@gmail.com",
-  "homepage": "",
+  "description": "",
+  "author": "Yahaha <raindropsaber@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaindropSaber/rlang.git",
+    "directory": "packages/kernel"
+  },
   "license": "MIT",
-  "main": "lib/index.js",
-  "bin": {
-    "rlang-cli": "./bin/rlang-cli"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
   "files": [
-    "lib"
+    "dist"
   ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "umd": "./dist/index.umd.js",
+  "types": "./dist/types/index.d.ts",
+  "bin": {
+    "rlang": "./bin/rlang-cli"
+  },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "prepublish": "npm run build"
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c",
+    "watch": "rollup -c -w"
   },
   "dependencies": {
     "commander": "^9.3.0",
-    "rlang-grammar": "^0.0.0",
-    "rlang-kernel": "^0.0.0",
-    "rlang-loader": "^0.0.0"
+    "rlang-grammar": "*",
+    "rlang-kernel": "*",
+    "rlang-loader": "*"
   }
 }

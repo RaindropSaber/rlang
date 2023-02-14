@@ -3,7 +3,7 @@ import { Graph, Shape, Addon, Model, Cell, CellView, Node } from '@antv/x6';
 import Editor from './Editor';
 import BaseNode from '../Compontents/BaseNode';
 import '@antv/x6-react-shape';
-import { T_AST, PortType, PackageType, T_NodePackage } from 'rlang-grammar/src';
+import { T_AST, PortType, PackageType } from 'rlang-grammar';
 
 interface T_X6JSON {
   cells: Cell.Properties[];
@@ -11,7 +11,9 @@ interface T_X6JSON {
 
 class RlangEditor extends Editor {
   opt: any;
-  ast: T_AST = { nodes: [], pipes: [], pkgs: [] };
+  ast: T_AST = {
+    nodes: [], pipes: [], pkgs: [],
+  };
   nodeShapeSet: Set<string> = new Set();
   edgeShapeSet: Set<string> = new Set();
   defaultPortsGroupLayout: any = null;

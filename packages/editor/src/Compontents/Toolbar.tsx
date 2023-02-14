@@ -3,7 +3,6 @@ import { message } from 'antd';
 import { Menu, Toolbar } from '@antv/x6-react-components';
 import '@antv/x6-react-components/es/menu/style/index.css';
 import '@antv/x6-react-components/es/toolbar/style/index.css';
-import 'antd/dist/antd.min.css';
 import {
   ZoomInOutlined,
   ZoomOutOutlined,

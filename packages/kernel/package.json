@@ -1,26 +1,29 @@
 {
   "name": "rlang-kernel",
-  "version": "0.0.0",
-  "description": "rlang runs the kernel",
-  "author": "raindropsaber@gmail.com",
-  "homepage": "",
-  "license": "MIT",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+  "version": "0.0.1",
+  "description": "",
+  "author": "Yahaha <raindropsaber@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaindropSaber/rlang.git",
+    "directory": "packages/kernel"
   },
+  "license": "MIT",
   "files": [
-    "lib"
+    "dist"
   ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "umd": "./dist/index.umd.js",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "prepublish": "npm run build"
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c",
+    "watch": "rollup -c -w"
   },
   "dependencies": {
-    "nanoid": "^3.0.0",
-    "rxjs": "^7.5.5",
-    "ts-toolbelt": "^9.6.0"
+    "nanoid": "^4.0.0",
+    "rlang-grammar": "*",
+    "rxjs": "^7.5.5"
   }
 }

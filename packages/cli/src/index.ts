@@ -5,7 +5,7 @@ import RlangLoader from 'rlang-loader';
 import path from 'path';
 import Module from 'module';
 
-export default (root: string) => {
+module.exports = (root: string) => {
   const ffff = require(root);
   const dir = path.dirname(root);
   console.log(`ffff`, ffff);
