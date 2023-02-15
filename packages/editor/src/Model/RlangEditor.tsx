@@ -12,7 +12,9 @@ interface T_X6JSON {
 class RlangEditor extends Editor {
   opt: any;
   ast: T_AST = {
-    nodes: [], pipes: [], pkgs: [],
+    nodes: [],
+    pipes: [],
+    pkgs: [],
   };
   nodeShapeSet: Set<string> = new Set();
   edgeShapeSet: Set<string> = new Set();
@@ -214,5 +216,5 @@ class RlangEditor extends Editor {
   }
 }
 
-export const EditorContext = createContext<RlangEditor>((null as unknown) as RlangEditor);
+export const EditorContext = createContext<RlangEditor>(null as unknown as RlangEditor);
 export default RlangEditor;

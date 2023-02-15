@@ -1,4 +1,3 @@
-import { PortType } from 'rlang-grammar/src';
 export default {
   cells: [
     {
@@ -29,7 +28,7 @@ export default {
       id: '3243c7ae-5496-467f-8f13-13e0ca08b9cd',
       ports: {
         groups: {
-          [PortType.I]: {
+          IN: {
             position: {
               name: 'left',
             },
@@ -47,7 +46,7 @@ export default {
               },
             },
           },
-          [PortType.O]: {
+          OUT: {
             position: {
               name: 'right',
             },
@@ -68,7 +67,7 @@ export default {
         },
         items: [
           {
-            group: PortType.I,
+            group: 'IN',
             id: 'in1',
             attrs: {
               text: {
@@ -77,7 +76,7 @@ export default {
             },
           },
           {
-            group: PortType.I,
+            group: 'IN',
             id: 'in2',
             attrs: {
               text: {
@@ -86,7 +85,7 @@ export default {
             },
           },
           {
-            group: PortType.O,
+            group: 'OUT',
             id: 'out1',
             attrs: {
               text: {
@@ -95,7 +94,7 @@ export default {
             },
           },
           {
-            group: PortType.O,
+            group: 'OUT',
             id: 'out2',
             attrs: {
               text: {
@@ -135,7 +134,7 @@ export default {
       id: '3998eec4-0eca-49ac-ada0-7ec6f6a1038e',
       ports: {
         groups: {
-          [PortType.I]: {
+          ['IN']: {
             position: {
               name: 'left',
             },
@@ -153,7 +152,7 @@ export default {
               },
             },
           },
-          [PortType.O]: {
+          ['OUT']: {
             position: {
               name: 'right',
             },
@@ -174,7 +173,7 @@ export default {
         },
         items: [
           {
-            group: PortType.I,
+            group: 'IN',
             id: 'in1',
             attrs: {
               text: {
@@ -183,7 +182,7 @@ export default {
             },
           },
           {
-            group: PortType.I,
+            group: 'IN',
             id: 'in2',
             attrs: {
               text: {
@@ -192,7 +191,7 @@ export default {
             },
           },
           {
-            group: PortType.O,
+            group: 'OUT',
             id: 'out1',
             attrs: {
               text: {
@@ -201,7 +200,7 @@ export default {
             },
           },
           {
-            group: PortType.O,
+            group: 'OUT',
             id: 'out2',
             attrs: {
               text: {

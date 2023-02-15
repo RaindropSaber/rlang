@@ -1,7 +1,6 @@
 import { defineConfig, UserConfigExport } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
-import commonjs from '@rollup/plugin-commonjs';
 import path from 'path';
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
@@ -11,7 +10,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         outputDir: path.resolve(__dirname, 'dist/types'),
         tsConfigFilePath: path.resolve(__dirname, './tsconfig.json'),
       }),
-      commonjs(),
+      // commonjs(),
       react({
         babel: {
           parserOpts: {
@@ -43,9 +42,18 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         name: 'RlangEditor',
         entry: path.resolve(__dirname, 'src/index.tsx'),
         formats: ['es', 'umd', 'cjs'],
-        fileName: 'index',
+        fileName: (formats: string) => {
+          if (formats === 'es') return 'index.esm.js';
+          if (formats === 'umd') return `index.umd.js`;
+          if (formats === 'cjs') return `index.js`;
+          return `index.js`;
+        },
       },
       sourcemap: true,
+      // watch: {
+      //   include: 'src/**',
+      //   exclude: 'node_modules/**',
+      // },
     };
   }
   return Object.assign(defaultConfig, config);

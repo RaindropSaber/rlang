@@ -21,6 +21,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
+    "init": "rimraf node_modules && rimraf package-lock.json",
     "build": "npm run clean && rollup -c",
     "watch": "rollup -c -w"
   },

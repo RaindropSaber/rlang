@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "watch": "lerna run --parallel --stream  watch",
-    "build": "lerna run build",
+    "build": "lerna run  --stream build",
+    "init": "lerna run init && lerna bootstrap",
     "bootstrap": "lerna bootstrap",
     "start:editor": "lerna run --scope rlang-editor dev"
   },

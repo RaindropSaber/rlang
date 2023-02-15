@@ -11,5 +11,3 @@ export default (root: HTMLElement) => {
   });
   return editor;
 };
-
-// export default () => {};
