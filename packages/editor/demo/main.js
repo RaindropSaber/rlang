@@ -4,7 +4,7 @@ import x6json from './x6json.js';
 
 const editor = RlangEditor(document.getElementById('root'));
 
-// editor.render(ast);
+editor.render(ast);
 
 // window['editor'] = editor;
 

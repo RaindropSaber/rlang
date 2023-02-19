@@ -1,13 +1,30 @@
-import React, { createContext } from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import RlangEditor from './Model/RlangEditor';
-import 'antd/dist/antd.css';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import Editor from './View/Editor';
+import Model from './Model/Editor';
+import EditorContext from './Store/Context';
+import { T_Edeitor_Config } from './Types';
+import { T_AST } from 'rlang-grammar';
 
-export default (root: HTMLElement) => {
-  const editor = new RlangEditor();
-  ReactDOM.render(<App editor={editor} />, root, () => {
-    editor.init();
-  });
-  return editor;
-};
+export default class RlangEditor {
+  config: T_Edeitor_Config;
+  model: Model;
+  constructor(config: T_Edeitor_Config) {
+    this.config = config;
+    this.model = new Model(config);
+    const root = createRoot(this.config.container);
+    root.render(
+      <EditorContext.Provider value={this.model}>
+        <Editor />
+      </EditorContext.Provider>
+    );
+  }
+  start() {
+    return new Promise((r) => this.model.isReady(() => r(this)));
+  }
+  render(ast: T_AST) {
+    this.model.render(ast);
+  }
+  toJSON() {}
+  addPackage() {}
+  onChange() {}
+}

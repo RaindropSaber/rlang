@@ -1,15 +1,7 @@
-type T_JSON_BASE = string | boolean | number | null;
-type T_JSON_OBJECT = {
-  [key: string]: T_JSON_BASE | T_JSON_ARRAY | T_JSON_OBJECT;
-};
-type T_JSON_ARRAY = (T_JSON_BASE | T_JSON_OBJECT | T_JSON_ARRAY)[];
-export type T_JSON = T_JSON_BASE | T_JSON_OBJECT | T_JSON_ARRAY;
-
 export enum PackageType {
   Node = 'Node',
   Pipe = 'Pipe',
 }
-
 export enum NodeType {
   R = 'R',
   T = 'T',
@@ -24,13 +16,19 @@ export enum RuntimeEnv {
   Node = 'Node',
   Browser = 'Browser',
 }
+type T_JSON_BASE = string | boolean | number | null;
+type T_JSON_OBJECT = {
+  [key: string]: T_JSON_BASE | T_JSON_ARRAY | T_JSON_OBJECT;
+};
+type T_JSON_ARRAY = (T_JSON_BASE | T_JSON_OBJECT | T_JSON_ARRAY)[];
+export type T_JSON = T_JSON_BASE | T_JSON_OBJECT | T_JSON_ARRAY;
 
-export type T_NodePackage = T_Package<PackageType.Node> & {
+export declare type T_NodePackage = T_Package<PackageType.Node> & {
   nodeType: NodeType;
   ports: T_Port[];
 };
-export type T_PipePackage = T_Package<PackageType.Pipe> & {};
-export type T_Package<PackageType> = {
+export declare type T_PipePackage = T_Package<PackageType.Pipe> & {};
+export declare type T_Package<PackageType> = {
   id?: string;
   name: string;
   version?: string;
@@ -40,7 +38,7 @@ export type T_Package<PackageType> = {
   env: RuntimeEnv[];
 };
 
-export interface T_Node {
+export declare interface T_Node {
   id?: string;
   packageName: T_NodePackage['name'];
   attribute: T_JSON;
@@ -53,7 +51,7 @@ export interface T_Node {
   view?: any;
 }
 
-export type T_Pipe = {
+export declare type T_Pipe = {
   id?: string;
   packageName: T_PipePackage['name'];
   attribute: T_JSON;
@@ -67,14 +65,14 @@ export type T_Pipe = {
   };
   view?: any;
 };
-export interface T_Port {
+export declare interface T_Port {
   id: string;
   name: string;
   type: PortType;
   desc?: string;
 }
 
-export interface T_AST {
+export declare interface T_AST {
   nodes: T_Node[];
   pipes: T_Pipe[];
   pkgs: (T_NodePackage | T_PipePackage)[];

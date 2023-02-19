@@ -1,10 +1,12 @@
 import React, { createRef, useEffect, useRef, useState, useContext, ElementRef } from 'react';
 import { Button, Drawer, Radio, Space } from 'antd';
-import Editor, { EditorContext } from '../Model/RlangEditor';
+import Model from '../Model/Editor';
+
+import EditorContext from '../Store/Context';
 import { observer } from 'mobx-react';
 
 const Panel: React.FC = observer((props) => {
-  const editor = useContext<Editor>(EditorContext);
+  const editor = useContext(EditorContext);
   const selectedNode = editor.state.selectedNode.toJSON();
   const drawerDOM = useRef(null);
 

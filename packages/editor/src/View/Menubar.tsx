@@ -26,6 +26,7 @@ export default class RMenubar extends React.Component<any> {
         >
           {/* @ts-ignore */}
           <Menubar extra={<div>Extra Component</div>}>
+            {/* @ts-ignore */}
             <MenubarItem text='File'>
               {/* @ts-ignore */}
               <Menu
@@ -56,6 +57,7 @@ export default class RMenubar extends React.Component<any> {
                 </MenuItem>
               </Menu>
             </MenubarItem>
+            {/* @ts-ignore */}
             <MenubarItem text='Edit'>
               <Menu>
                 <MenuItem name='undo' hotkey='Cmd+Z'>
@@ -83,6 +85,7 @@ export default class RMenubar extends React.Component<any> {
                 </MenuItem>
               </Menu>
             </MenubarItem>
+            {/* @ts-ignore */}
             <MenubarItem text='View'>
               <Menu>
                 <MenuItem name='zen' hotkey='Cmd+K Z'>
@@ -108,6 +111,7 @@ export default class RMenubar extends React.Component<any> {
                 </MenuItem>
               </Menu>
             </MenubarItem>
+            {/* @ts-ignore */}
             <MenubarItem text='Help'>
               <Menu>
                 <MenuItem name='welcome'>Welcome</MenuItem>

@@ -14,7 +14,7 @@ import {
   StrikethroughOutlined,
   UnderlineOutlined,
 } from '@ant-design/icons';
-import { EditorContext } from '../Model/RlangEditor';
+import EditorContext from '../Store/Context';
 import { observer } from 'mobx-react';
 
 const Item = Toolbar.Item;
@@ -74,7 +74,12 @@ export default class RToolbar extends React.Component {
         <Toolbar size='big' onClick={this.onClick} extra={<span>Extra Component</span>}>
           <Group>
             {/* @ts-ignore */}
-            <Item name='Stencil' tooltip='Zoom Out (Cmd -)' active={this.context.state.isStencilEnabled.get()} icon={<ZoomOutOutlined />} />
+            <Item
+              name='Stencil'
+              tooltip='Zoom Out (Cmd -)'
+              active={this.context.state.isStencilEnabled.get()}
+              icon={<ZoomOutOutlined />}
+            />
           </Group>
           <Group>
             <Item name='zoomIn' tooltip='Zoom In (Cmd +)' icon={<ZoomInOutlined />} />
