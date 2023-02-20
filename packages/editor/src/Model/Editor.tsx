@@ -3,9 +3,7 @@ import { T_Edeitor_Config } from '../Types';
 import Store from '../Store';
 import Graph from './Graph';
 import Stencil from './Stencil';
-import { PackageType, PortType, T_AST } from 'rlang-grammar';
-import BaseNode from '../View/BaseNode';
-import { register } from '@antv/x6-react-shape';
+import { PackageType, PortType, T_AST, T_NodePackage, T_Package } from 'rlang-grammar';
 interface T_X6JSON {
   cells: Cell.Properties[];
 }
@@ -23,22 +21,19 @@ class EditorModel {
     pipes: [],
     pkgs: [],
   };
-  readyCallback?: Function;
   constructor(config: T_Edeitor_Config) {
     this.config = config;
     this.state = new Store(this);
-    this.initShape();
-  }
-  isReady(callback: Function) {
-    this.readyCallback = callback;
+    // this.initShape();
   }
 
-  public init() {
-    console.log('initinitinit');
+  public init(callback?: Function) {
     if (this.graphDOM && this._stencilDOM) {
       this.initGraph();
       this.initStencil();
-      this.readyCallback?.();
+      callback?.();
+    } else {
+      setTimeout(() => this.init(callback));
     }
   }
 
@@ -53,7 +48,6 @@ class EditorModel {
   }
   public setGraphDOM(graphDOM: HTMLElement) {
     this.graphDOM = graphDOM;
-    this.init();
   }
 
   // Stencil
@@ -72,96 +66,98 @@ class EditorModel {
   }
   public setStencilDOM(stencilDOM: HTMLElement) {
     this._stencilDOM = stencilDOM;
-    this.init();
-    // throw new Error('Method not implemented.');
   }
 
-  private initShape() {
-    this.edgeShapeSet.add('edge');
-    this.nodeShapeSet.add('BaseNode');
-    this.defaultPortsGroupLayout = {
-      [PortType.I]: {
-        position: {
-          name: 'left',
-        },
-        zIndex: 2,
-        label: {
-          position: 'right',
-        },
-        attrs: {
-          circle: {
-            r: 6,
-            magnet: true,
-            stroke: '#31d0c6',
-            strokeWidth: 2,
-            fill: '#fff',
-          },
-        },
-      },
-      [PortType.O]: {
-        position: {
-          name: 'right',
-        },
-        label: {
-          position: 'left',
-        },
-        zIndex: 2,
-        attrs: {
-          circle: {
-            r: 6,
-            magnet: true,
-            stroke: '#31d0c6',
-            strokeWidth: 2,
-            fill: '#fff',
-          },
-        },
-      },
-    };
-    register({
-      shape: 'BaseNode',
-      width: 150,
-      height: 100,
-      component: BaseNode,
-    });
-  }
+  // private initShape() {
+  //   this.edgeShapeSet.add('edge');
+  //   this.nodeShapeSet.add('BaseNode');
+  //   this.defaultPortsGroupLayout = {
+  //     [PortType.I]: {
+  //       position: {
+  //         name: 'left',
+  //       },
+  //       zIndex: 2,
+  //       label: {
+  //         position: 'right',
+  //       },
+  //       attrs: {
+  //         circle: {
+  //           r: 6,
+  //           magnet: true,
+  //           stroke: '#31d0c6',
+  //           strokeWidth: 2,
+  //           fill: '#fff',
+  //         },
+  //       },
+  //     },
+  //     [PortType.O]: {
+  //       position: {
+  //         name: 'right',
+  //       },
+  //       label: {
+  //         position: 'left',
+  //       },
+  //       zIndex: 2,
+  //       attrs: {
+  //         circle: {
+  //           r: 6,
+  //           magnet: true,
+  //           stroke: '#31d0c6',
+  //           strokeWidth: 2,
+  //           fill: '#fff',
+  //         },
+  //       },
+  //     },
+  //   };
+  //   register({
+  //     shape: 'BaseNode',
+  //     width: 150,
+  //     height: 100,
+  //     component: BaseNode,
+  //   });
+  // }
   // private isNode(cell: Cell.Properties) {
   //   return this.graph.nodeShapeSet.has(cell.shape!);
   // }
   // private isEdge(cell: Cell.Properties) {
   //   return this.edgeShapeSet.has(cell.shape!);
   // }
-  private renderPackage(ast: T_AST) {
-    const stencil: { [groupName: string]: (Node<Node.Properties> | Node.Metadata)[] } = {};
-
-    ast.pkgs.forEach((pkg) => {
+  private renderPackage(pkgs: T_Package<PackageType>[]) {
+    // const stencil: { [groupName: string]: (Node<Node.Properties> | Node.Metadata)[] } = {};
+    pkgs.forEach((pkg) => {
       if (pkg.type === PackageType.Node) {
-        const groupName: string = pkg.group || '基础类型';
-        const stencilArr = stencil[groupName] || [];
-        stencilArr.push(
-          this.graph.createNode({
-            data: { pkg },
-            size: { width: 120, height: 30 },
-            shape: 'BaseNode',
-            ports: {
-              groups: this.defaultPortsGroupLayout,
-              items: pkg.ports.map((port) => {
-                return {
-                  group: port.type,
-                  id: port.id,
-                  attrs: {
-                    text: {
-                      text: port.name,
-                    },
-                  },
-                };
-              }),
-            },
-          })
-        );
-        stencil[groupName] = stencilArr;
-        this.stencil.loadStencil(stencil);
+        this.stencil.createStencil(pkg as T_NodePackage);
       }
     });
+    // pkgs.forEach((pkg) => {
+    //   if (pkg.type === PackageType.Node) {
+    //     const groupName: string = pkg.group || '基础类型';
+    //     const stencilArr = stencil[groupName] || [];
+    //     stencilArr.push(
+    //       this.graph.createNode({
+    //         data: { pkg },
+    //         size: { width: 120, height: 30 },
+    //         shape: 'BaseNode',
+    //         ports: {
+    //           groups: this.defaultPortsGroupLayout,
+    //           items: pkg.ports.map((port) => {
+    //             return {
+    //               group: port.type,
+    //               id: port.id,
+    //               attrs: {
+    //                 text: {
+    //                   text: port.name,
+    //                 },
+    //               },
+    //             };
+    //           }),
+    //         },
+    //       })
+    //     );
+    //     stencil[groupName] = stencilArr;
+    //     this.stencil.loadStencil(stencil);
+    //   }
+    // });
   }
   private renderCell(ast: T_AST) {
     const x6json = this.toX6();
@@ -263,7 +259,7 @@ class EditorModel {
   // }
   public render(ast: T_AST) {
     this.ast = ast;
-    this.renderPackage(ast);
+    this.renderPackage(ast.pkgs);
     this.renderCell(ast);
   }
 }

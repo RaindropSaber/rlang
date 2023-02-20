@@ -27,8 +27,6 @@ const Workspace = styled.div`
 const StatusBar = styled.div``;
 
 const Editor: React.FC = observer(() => {
-  const editor = useContext(EditorContext);
-
   return (
     <Container>
       {/* <Menubar></Menubar> */}

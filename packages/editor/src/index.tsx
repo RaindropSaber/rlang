@@ -19,7 +19,7 @@ export default class RlangEditor {
     );
   }
   start() {
-    return new Promise((r) => this.model.isReady(() => r(this)));
+    return new Promise((r) => this.model.init(() => r(this)));
   }
   render(ast: T_AST) {
     this.model.render(ast);

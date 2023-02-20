@@ -76,14 +76,12 @@ export default class Graph extends X6Graph {
         // showEdgeSelectionBox: true,
       })
     );
-    this.init();
-  }
-
-  init() {
     this.initKeyboardEvent();
     this.initSelectEvent();
     this.initEdgeMoveEvent();
   }
+
+  init() {}
 
   private initKeyboardEvent() {
     this.bindKey('meta+a', () => {
