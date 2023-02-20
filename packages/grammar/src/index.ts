@@ -2,6 +2,10 @@ export enum PackageType {
   Node = 'Node',
   Pipe = 'Pipe',
 }
+export enum PackageMode {
+  Node = 'Node',
+  GRAPH = 'GRAPH',
+}
 export enum NodeType {
   R = 'R',
   T = 'T',
@@ -23,25 +27,32 @@ export enum RuntimeEnv {
 // type T_JSON_ARRAY = (T_JSON_BASE | T_JSON_OBJECT | T_JSON_ARRAY)[];
 // export type T_JSON = T_JSON_BASE | T_JSON_OBJECT | T_JSON_ARRAY;
 
-export declare type T_NodePackage = T_Package<PackageType.Node> & {
-  nodeType: NodeType;
-  ports: T_Port[];
-};
-export declare type T_PipePackage = T_Package<PackageType.Pipe> & {};
-export declare type T_Package<PackageType> = {
-  // id: string;
+// export declare type T_NodePackage = T_Package<PackageType.Node> & {
+//   shapeUrl: string;
+//   panelUrl: string;
+// };
+// export declare type T_PipePackage = T_Package<PackageType.Pipe> & {};
+export declare type T_Package = {
   name: string;
-  version?: string;
-  // desc?: string;
-  type: PackageType;
-  // group?: string;
-  // env: RuntimeEnv[];
-  // shape?: string;
+  version: string;
+  rlang: {
+    type: PackageType;
+    mode: PackageMode;
+    shape?: {
+      assets: string;
+    };
+    panel?: {
+      assets: string;
+    };
+    modules?: {
+      assets: string;
+    };
+  };
 };
 
 export declare interface T_Node {
   id?: string;
-  packageName: T_NodePackage['name'];
+  packageName: T_Package['name'];
   attribute: JSON;
   position?: {
     x: string;
@@ -54,7 +65,7 @@ export declare interface T_Node {
 
 export declare type T_Pipe = {
   id?: string;
-  packageName: T_PipePackage['name'];
+  packageName: T_Package['name'];
   attribute: JSON;
   [PortType.I]: {
     nodeId: T_Node['id'];
@@ -76,5 +87,5 @@ export declare interface T_Port {
 export declare interface T_AST {
   nodes: T_Node[];
   pipes: T_Pipe[];
-  pkgs: T_Package<PackageType>[];
+  pkgs: T_Package[];
 }

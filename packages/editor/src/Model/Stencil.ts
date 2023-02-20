@@ -6,7 +6,7 @@ import Graph from './Graph';
 import { register } from '@antv/x6-react-shape';
 import { T_Stencil } from '../Types';
 import BaseNode from '../View/BaseNode';
-import loadPkg from '../Tools/loadPkg';
+import loadPkg from '../Tools/loadScript';
 
 const defaultPortsGroupLayout = {
   [PortType.I]: {
@@ -102,7 +102,7 @@ export default class Stencil extends X6Stencil {
     };
   }
   public async createStencil(pkg: T_NodePackage) {
-    const ddd = await loadPkg(pkg.id);
+    const ddd = await loadPkg(pkg);
     const stencil = await this.loadPkg(pkg);
     const groupName: string = stencil.groupName;
     const groupNameStencilArr = this.stencilMap[groupName] || [];

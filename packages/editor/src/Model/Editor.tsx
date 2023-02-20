@@ -122,13 +122,16 @@ class EditorModel {
   // private isEdge(cell: Cell.Properties) {
   //   return this.edgeShapeSet.has(cell.shape!);
   // }
-  private renderPackage(pkgs: T_Package<PackageType>[]) {
+  private renderPackage(pkgs: T_Package[]) {
     // const stencil: { [groupName: string]: (Node<Node.Properties> | Node.Metadata)[] } = {};
-    pkgs.forEach((pkg) => {
-      if (pkg.type === PackageType.Node) {
-        this.stencil.createStencil(pkg as T_NodePackage);
+    const renderPkgsPromiseList = pkgs.map((pkg) => {
+      if (pkg.rlang.type === PackageType.Node) {
+        return this.stencil.createStencil(pkg as T_NodePackage);
+      } else {
+        return Promise.resolve();
       }
     });
+    return Promise.allSettled(renderPkgsPromiseList);
     // pkgs.forEach((pkg) => {
     //   if (pkg.type === PackageType.Node) {
     //     const groupName: string = pkg.group || '基础类型';
@@ -257,9 +260,9 @@ class EditorModel {
   // public toJSON(): T_AST {
   //   return this.toAST();
   // }
-  public render(ast: T_AST) {
+  public async render(ast: T_AST) {
     this.ast = ast;
-    this.renderPackage(ast.pkgs);
+    await this.renderPackage(ast.pkgs);
     this.renderCell(ast);
   }
 }

@@ -1,4 +1,4 @@
-import { T_Node, NodeType, T_Port, RuntimeEnv, PortType, T_JSON } from 'rlang-grammar';
+import { T_Node, NodeType, T_Port, RuntimeEnv, PortType } from 'rlang-grammar';
 import Port from './Port';
 import Node from './Node';
 import getId from './utils/getId';
