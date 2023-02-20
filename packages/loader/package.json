@@ -25,5 +25,8 @@
   "dependencies": {
     "rlang-grammar": "*",
     "rlang-kernel": "*"
+  },
+  "devDependencies": {
+    "load-script": "^2.0.0"
   }
 }
