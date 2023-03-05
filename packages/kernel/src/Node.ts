@@ -1,17 +1,35 @@
-import { T_Node, T_Pipe, NodeType, T_Package, T_Port, RuntimeEnv, PortType, PackageType } from 'rlang-grammar';
-import Port from './Port';
-import Graph from './Graph';
-import Context from './Context';
+import {
+  T_Node,
+  T_Pipe,
+  NodeType,
+  T_Package,
+  T_Port,
+  RuntimeEnv,
+  PortType,
+  PackageType,
+} from "rlang-grammar";
+import Port from "./Port";
+import Graph from "./Graph";
+import Context from "./Context";
 
-type T_NodeOption = Pick<T_Node, 'id' | 'attribute' | 'ports'>;
+type T_NodeOption = Pick<T_Node, "id" | "attribute" | "ports">;
 
 type T_PortMap<K> = Map<keyof K, Port<Get<K, keyof K>>>;
 type Get<T, K> = K extends keyof T ? T[K] : never;
-type DefaultPortsDTO = { [PortType.I]: { [portId: string]: {} }; [PortType.O]: { [portId: string]: {} } };
-export type $I<G extends DefaultPortsDTO> = <T extends keyof G[PortType.I]>(id: T) => Port<Get<G[PortType.I], T>>;
-export type $O<G extends DefaultPortsDTO> = <T extends keyof G[PortType.O]>(id: T) => Port<Get<G[PortType.O], T>>;
+type DefaultPortsDTO = {
+  [PortType.I]: { [portId: string]: {} };
+  [PortType.O]: { [portId: string]: {} };
+};
+export type $I<G extends DefaultPortsDTO> = <T extends keyof G[PortType.I]>(
+  id: T
+) => Port<Get<G[PortType.I], T>>;
+export type $O<G extends DefaultPortsDTO> = <T extends keyof G[PortType.O]>(
+  id: T
+) => Port<Get<G[PortType.O], T>>;
 
-export default class Node<G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO> {
+export default class Node<
+  G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO
+> {
   static meta: T_Package;
   option: T_NodeOption;
   graph!: Graph;
@@ -24,9 +42,9 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO> 
   get meta() {
     return (this.constructor as typeof Node).meta;
   }
-  get type() {
-    return this.meta.type;
-  }
+  // get type() {
+  //   return this.meta.type;
+  // }
   get name() {
     return this.meta.name;
   }
@@ -41,20 +59,35 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO> 
   }
 
   private attachPort(option: T_Port) {
-    const port = new Port<Pick<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>[keyof G_PortsDTO[PortType]]>(option);
+    const port = new Port<
+      Pick<
+        G_PortsDTO[PortType],
+        keyof G_PortsDTO[PortType]
+      >[keyof G_PortsDTO[PortType]]
+    >(option);
     port.attach(this);
-    option.type === PortType.I ? this.portIMap.set(port.id, port) : this.portOMap.set(port.id, port);
+    option.type === PortType.I
+      ? this.portIMap.set(port.id, port)
+      : this.portOMap.set(port.id, port);
     return port;
   }
   private initPort() {
-    this.ports = this.option.ports.map((portOption) => this.attachPort(portOption));
+    this.ports = this.option.ports.map((portOption) =>
+      this.attachPort(portOption)
+    );
 
     const $I = (id: keyof G_PortsDTO[PortType.I]) => {
-      if (!this.portIMap.has(id)) throw new Error(`node ${this.name} has no port that id is ${id as string}`);
+      if (!this.portIMap.has(id))
+        throw new Error(
+          `node ${this.name} has no port that id is ${id as string}`
+        );
       return this.portIMap.get(id)!;
     };
     const $O = (id: keyof G_PortsDTO[PortType.O]) => {
-      if (!this.portOMap.has(id)) throw new Error(`node ${this.name} has no port that id is ${id as string}`);
+      if (!this.portOMap.has(id))
+        throw new Error(
+          `node ${this.name} has no port that id is ${id as string}`
+        );
       return this.portOMap.get(id)!;
     };
     this.$I = $I;

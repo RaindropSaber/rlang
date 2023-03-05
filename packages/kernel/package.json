@@ -10,20 +10,34 @@
   },
   "license": "MIT",
   "files": [
-    "dist"
+    "lib"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "umd": "./dist/index.umd.js",
-  "types": "./dist/types/index.d.ts",
+  "type": "module",
+  "main": "./lib/node/index.cjs",
+  "module": "./lib/node/index.mjs",
+  "browser": "./lib/browser/index.mjs",
+  "types": "./lib/types/index.d.ts",
+  "exports": {
+    "node": {
+      "require": "./lib/node/index.cjs",
+      "import": "./lib/node/index.mjs"
+    },
+    "browser": {
+      "require": "./lib/browser/index.cjs",
+      "import": "./lib/browser/index.mjs",
+      "umd": "./lib/browser/index.umd.js"
+    },
+    "types": "./lib/types/index.d.ts",
+    "default": "./lib/node/index.mjs"
+  },
   "scripts": {
-    "clean": "rimraf dist",
-    "init": "rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c",
-    "watch": "rollup -c -w"
+    "clean": "rimraf lib",
+    "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs && rollup -c --bundleConfigAsCjs --environment umd",
+    "watch": "rollup -c -w --bundleConfigAsCjs & rollup -c -w --bundleConfigAsCjs --environment umd"
   },
   "dependencies": {
-    "nanoid": "^4.0.0",
+    "nanoid": "^3.3.4",
     "rlang-grammar": "*",
     "rxjs": "^7.5.5"
   }

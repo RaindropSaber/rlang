@@ -1,0 +1,29 @@
+{
+  "name": "rlang-test",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Yahaha <raindropsaber@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaindropSaber/rlang.git",
+    "directory": "packages/kernel"
+  },
+  "license": "MIT",
+  "scripts": {
+    "init": "rimraf dist && rimraf node_modules && rimraf package-lock.json",
+    "test": "jest"
+  },
+  "type": "module",
+  "dependencies": {
+    "rlang-cli": "*",
+    "rlang-engine": "*",
+    "rlang-grammar": "*",
+    "rlang-kernel": "*",
+    "rlang-loader": "*",
+    "rlang-node-transfer": "*",
+    "rlang-node-write": "*",
+    "rlang-node-receiver": "*",
+    "rlang-node-basepipe": "*",
+    "ts-jest": "^29.0.5"
+  }
+}

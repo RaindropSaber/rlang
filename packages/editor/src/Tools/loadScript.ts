@@ -1,2 +1,2 @@
-import { PackageType } from 'rlang-grammar';
+import { PackageType } from "rlang-grammar";
 export default async (pkg: string) => {};

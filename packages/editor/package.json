@@ -23,7 +23,7 @@
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
-    "init": "rimraf node_modules && rimraf package-lock.json",
+    "init": "rimraf dist && rimraf node_modules && rimraf package-lock.json",
     "dev": "vite",
     "build": "npm run clean && vite build",
     "watch": "tsc -w --noEmit",

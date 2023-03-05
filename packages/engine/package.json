@@ -10,20 +10,29 @@
   },
   "license": "MIT",
   "files": [
-    "dist"
+    "lib",
+    "bin"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "umd": "./dist/index.umd.js",
-  "types": "./dist/types/index.d.ts",
   "bin": {
     "rlang": "./bin/rlang"
   },
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "browser": "./lib/index.mjs",
+  "types": "./lib/types/index.d.ts",
+  "exports": {
+    "require": "./lib/index.cjs",
+    "import": "./lib/index.mjs",
+    "umd": "./lib/index.umd.js",
+    "types": "./lib/types/index.d.ts",
+    "default": "./lib/index.mjs"
+  },
   "scripts": {
-    "clean": "rimraf dist",
-    "init": "rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c",
-    "watch": "rollup -c -w"
+    "clean": "rimraf lib",
+    "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
+    "build": "npm run clean && tsc",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "commander": "^9.3.0",

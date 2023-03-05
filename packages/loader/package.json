@@ -10,17 +10,18 @@
   },
   "license": "MIT",
   "files": [
-    "dist"
+    "lib"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "umd": "./dist/index.umd.js",
-  "types": "./dist/types/index.d.ts",
+  "type": "module",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "umd": "./lib/index.js",
+  "types": "./lib/types/index.d.ts",
   "scripts": {
-    "clean": "rimraf dist",
-    "init": "rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c",
-    "watch": "rollup -c -w"
+    "clean": "rimraf lib",
+    "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
+    "build": "npm run clean && tsc",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "rlang-grammar": "*",

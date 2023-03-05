@@ -1,7 +1,7 @@
-import { T_Node, NodeType, T_Port, RuntimeEnv, PortType } from 'rlang-grammar';
-import Port from './Port';
-import Node from './Node';
-import getId from './utils/getId';
+import { T_Node, NodeType, T_Port, RuntimeEnv, PortType } from "rlang-grammar";
+import Port from "./Port";
+import Node from "./Node";
+import getId from "./utils/getId";
 
 export default class Context<T_PortDTO> {
   id: string;
@@ -11,7 +11,7 @@ export default class Context<T_PortDTO> {
 
   constructor(body?: unknown) {
     this.body = body;
-    this.id = getId('$CONTEXT');
+    this.id = getId("$CONTEXT");
     this.#next = [];
     this.#prev = null;
   }

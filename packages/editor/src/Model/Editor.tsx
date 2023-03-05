@@ -1,9 +1,15 @@
-import { Cell, Node } from '@antv/x6';
-import { T_Edeitor_Config } from '../Types';
-import Store from '../Store';
-import Graph from './Graph';
-import Stencil from './Stencil';
-import { PackageType, PortType, T_AST, T_NodePackage, T_Package } from 'rlang-grammar';
+import { Cell, Node } from "@antv/x6";
+import { T_Edeitor_Config } from "../Types";
+import Store from "../Store";
+import Graph from "./Graph";
+import Stencil from "./Stencil";
+import {
+  PackageType,
+  PortType,
+  T_AST,
+  T_NodePackage,
+  T_Package,
+} from "rlang-grammar";
 interface T_X6JSON {
   cells: Cell.Properties[];
 }
@@ -41,7 +47,7 @@ class EditorModel {
   private _graph?: Graph;
   get graph() {
     if (this._graph) return this._graph;
-    throw new Error('graph is not init');
+    throw new Error("graph is not init");
   }
   private initGraph() {
     this._graph = new Graph(this);
@@ -54,12 +60,12 @@ class EditorModel {
   private _stencil?: Stencil;
   get stencil() {
     if (this._stencil) return this._stencil;
-    throw new Error('stencil is not init');
+    throw new Error("stencil is not init");
   }
   private _stencilDOM?: HTMLElement;
   get stencilDOM() {
     if (this._stencilDOM) return this._stencilDOM;
-    throw new Error('stencilDOM is not init');
+    throw new Error("stencilDOM is not init");
   }
   private initStencil() {
     this._stencil = new Stencil(this);
@@ -192,7 +198,7 @@ class EditorModel {
     });
     pipes.forEach((pipe) => {
       const cellInfo = {
-        shape: 'edge',
+        shape: "edge",
         id: pipe.id,
         source: {
           cell: pipe.OUT.nodeId,

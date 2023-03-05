@@ -1,20 +1,20 @@
-import { defineConfig, UserConfigExport } from 'vite';
-import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
-import path from 'path';
+import { defineConfig, UserConfigExport } from "vite";
+import react from "@vitejs/plugin-react";
+import dts from "vite-plugin-dts";
+import path from "path";
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
   const defaultConfig: UserConfigExport = {
     plugins: [
       dts({
-        outputDir: path.resolve(__dirname, 'dist/types'),
-        tsConfigFilePath: path.resolve(__dirname, './tsconfig.json'),
+        outputDir: path.resolve(__dirname, "dist/types"),
+        tsConfigFilePath: path.resolve(__dirname, "./tsconfig.json"),
       }),
       // commonjs(),
       react({
         babel: {
           parserOpts: {
-            plugins: ['decorators-legacy', 'classProperties'],
+            plugins: ["decorators-legacy", "classProperties"],
           },
         },
       }),
@@ -33,19 +33,19 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     },
   };
   const config: UserConfigExport = {};
-  if (command === 'build') {
+  if (command === "build") {
     config.define = {
-      'process.env.NODE_ENV': '"production"',
+      "process.env.NODE_ENV": '"production"',
     };
     config.build = {
       lib: {
-        name: 'RlangEditor',
-        entry: path.resolve(__dirname, 'src/index.tsx'),
-        formats: ['es', 'umd', 'cjs'],
+        name: "RlangEditor",
+        entry: path.resolve(__dirname, "src/index.tsx"),
+        formats: ["es", "umd", "cjs"],
         fileName: (formats: string) => {
-          if (formats === 'es') return 'index.esm.js';
-          if (formats === 'umd') return `index.umd.js`;
-          if (formats === 'cjs') return `index.js`;
+          if (formats === "es") return "index.esm.js";
+          if (formats === "umd") return `index.umd.js`;
+          if (formats === "cjs") return `index.js`;
           return `index.js`;
         },
       },

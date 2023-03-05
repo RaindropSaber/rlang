@@ -1,8 +1,17 @@
-import { T_Node, T_Pipe, T_Package, NodeType, T_Port, RuntimeEnv, PortType, PackageType } from 'rlang-grammar';
-import Port from './Port';
-import Graph from './Graph';
+import {
+  T_Node,
+  T_Pipe,
+  T_Package,
+  NodeType,
+  T_Port,
+  RuntimeEnv,
+  PortType,
+  PackageType,
+} from "rlang-grammar";
+import Port from "./Port";
+import Graph from "./Graph";
 
-type T_PipeOption = Pick<T_Pipe, 'id' | 'attribute'>;
+type T_PipeOption = Pick<T_Pipe, "id" | "attribute">;
 
 export default class Pipe {
   static meta: T_Package;

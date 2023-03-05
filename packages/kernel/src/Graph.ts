@@ -1,12 +1,22 @@
-import { T_Node, T_Pipe, T_Package, NodeType, T_Port, RuntimeEnv, PortType, T_AST, PackageType } from 'rlang-grammar';
-import Node from './Node';
-import Pipe from './Pipe';
+import {
+  T_Node,
+  T_Pipe,
+  T_Package,
+  NodeType,
+  T_Port,
+  RuntimeEnv,
+  PortType,
+  T_AST,
+  PackageType,
+} from "rlang-grammar";
+import Node from "./Node";
+import Pipe from "./Pipe";
 
 export default class Graph {
   ast: T_AST;
   app: any;
-  nodeInsMap!: Map<T_Node['id'], Node<any>>;
-  pipeInsMap!: Map<T_Pipe['id'], Pipe>;
+  nodeInsMap!: Map<T_Node["id"], Node<any>>;
+  pipeInsMap!: Map<T_Pipe["id"], Pipe>;
   packageMap!: Map<string, typeof Node | typeof Pipe>;
 
   // private sort(nodeInsList: Node<any>[]) {
@@ -16,11 +26,14 @@ export default class Graph {
   //   }, [] as Node<any>[]);
   // }
 
-  injectPackage(packageName: T_Package['name'], packageContext: typeof Node | typeof Pipe) {
+  injectPackage(
+    packageName: T_Package["name"],
+    packageContext: typeof Node | typeof Pipe
+  ) {
     this.packageMap.set(packageName, packageContext);
   }
 
-  requirePackage(packageName: T_Package['name']) {
+  requirePackage(packageName: T_Package["name"]) {
     return this.packageMap.get(packageName);
   }
 
@@ -70,8 +83,8 @@ export default class Graph {
   constructor(ast: T_AST) {
     this.ast = ast;
     this.packageMap = new Map<string, typeof Node | typeof Pipe>();
-    this.nodeInsMap = new Map<T_Node['id'], Node<any>>();
-    this.pipeInsMap = new Map<T_Pipe['id'], Pipe>();
+    this.nodeInsMap = new Map<T_Node["id"], Node<any>>();
+    this.pipeInsMap = new Map<T_Pipe["id"], Pipe>();
   }
 
   setApp<T>(app: T) {

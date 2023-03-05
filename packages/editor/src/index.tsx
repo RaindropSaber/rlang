@@ -1,9 +1,9 @@
-import { createRoot, hydrateRoot } from 'react-dom/client';
-import Editor from './View/Editor';
-import Model from './Model/Editor';
-import EditorContext from './Store/Context';
-import { T_Edeitor_Config } from './Types';
-import { T_AST } from 'rlang-grammar';
+import { createRoot, hydrateRoot } from "react-dom/client";
+import Editor from "./View/Editor";
+import Model from "./Model/Editor";
+import EditorContext from "./Store/Context";
+import { T_Edeitor_Config } from "./Types";
+import { T_AST } from "rlang-grammar";
 
 export default class RlangEditor {
   config: T_Edeitor_Config;
