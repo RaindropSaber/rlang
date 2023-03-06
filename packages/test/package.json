@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "init": "rimraf dist && rimraf node_modules && rimraf package-lock.json",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "type": "module",
   "dependencies": {

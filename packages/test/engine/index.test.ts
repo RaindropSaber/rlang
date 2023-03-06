@@ -1,8 +1,8 @@
-import rlangEngine from "rlang-engine";
-import path from "path";
-import type { Graph } from "rlang-kernel";
+import rlangEngine from 'rlang-engine';
+import path from 'node:path';
+import type { Graph } from 'rlang-kernel';
 
-const graph: Graph = rlangEngine("../test-rlang/index.rl");
+const graph: Graph = rlangEngine('../test-rlang/index.rl');
 
 graph.setApp({});
 

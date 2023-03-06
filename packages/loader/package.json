@@ -13,15 +13,22 @@
     "lib"
   ],
   "type": "module",
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
-  "umd": "./lib/index.js",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "browser": "./lib/index.mjs",
   "types": "./lib/types/index.d.ts",
+  "exports": {
+    "require": "./lib/index.cjs",
+    "import": "./lib/index.mjs",
+    "umd": "./lib/index.umd.js",
+    "types": "./lib/types/index.d.ts",
+    "default": "./lib/index.mjs"
+  },
   "scripts": {
     "clean": "rimraf lib",
     "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && tsc",
-    "watch": "tsc -w"
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
+    "watch": "rollup -c -w --bundleConfigAsCjs"
   },
   "dependencies": {
     "rlang-grammar": "*",

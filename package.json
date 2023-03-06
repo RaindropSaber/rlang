@@ -2,7 +2,7 @@
   "name": "rlang",
   "private": true,
   "scripts": {
-    "watch": "lerna run clean && lerna run --parallel --stream  watch",
+    "watch": "lerna run --parallel --stream  watch",
     "build": "lerna run clean && lerna run  --stream build",
     "test": "lerna run  --stream test",
     "bootstrap": "lerna run init && lerna bootstrap && npm run build",

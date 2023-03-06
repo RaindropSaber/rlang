@@ -1,4 +1,4 @@
-import { T_AST } from "rlang-grammar";
+import { T_AST } from 'rlang-grammar';
 
 interface T_packageTPL {
   imp: string[];
@@ -12,15 +12,15 @@ export default (source: string) => {
     .filter((v) => v.name)
     .reduce(
       (acc, item, index) => {
-        const pkgStatementId = "DependPackage_" + index;
+        const pkgStatementId = 'DependPackage_' + index;
         acc.inj.push(`graph.injectPackage('${item.name}',${pkgStatementId})`);
         acc.imp.push(`import ${pkgStatementId} from '${item.name}'`);
         return acc;
       },
       { imp: [], inj: [] } as T_packageTPL
     );
-  const importStr = imp.join("\n");
-  const injectStr = inj.join("\n");
+  const importStr = imp.join('\n');
+  const injectStr = inj.join('\n');
 
   return `
   import { Graph } from 'rlang-kernel'
@@ -47,17 +47,15 @@ export const cjs = (source: string) => {
     .filter((v) => v.name)
     .reduce(
       (acc, item, index) => {
-        const pkgStatementId = "DependPackage_" + index;
+        const pkgStatementId = 'DependPackage_' + index;
         acc.inj.push(`graph.injectPackage('${item.name}',${pkgStatementId})`);
-        acc.imp.push(
-          `const ${pkgStatementId} = require('${item.name}').default;`
-        );
+        acc.imp.push(`const ${pkgStatementId} = require('${item.name}').default;`);
         return acc;
       },
       { imp: [], inj: [] } as T_packageTPL
     );
-  const requireStr = imp.join("\n");
-  const injectStr = inj.join("\n");
+  const requireStr = imp.join('\n');
+  const injectStr = inj.join('\n');
   return `
   const { Graph } = require('rlang-kernel')
   console.log('Graph',Graph)
