@@ -1,7 +1,7 @@
+import Context from './Context';
 import Graph from './Graph';
 import Node from './Node';
-import Port from './Port';
 import Pipe from './Pipe';
-import Context from './Context';
+import Port from './Port';
 
 export { Node, Port, Context, Pipe, Graph };

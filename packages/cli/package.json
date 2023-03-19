@@ -2,33 +2,33 @@
   "name": "rlang-cli",
   "version": "0.0.1",
   "description": "",
-  "author": "Yahaha <raindropsaber@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/RaindropSaber/rlang.git",
     "directory": "packages/kernel"
   },
   "license": "MIT",
+  "author": "Yahaha <raindropsaber@gmail.com>",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/types/index.d.ts",
+  "bin": {
+    "rlang-cli": "./bin/rlang-cli"
+  },
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "umd": "./dist/index.umd.js",
-  "types": "./dist/types/index.d.ts",
-  "bin": {
-    "rlang": "./bin/rlang-cli"
-  },
   "scripts": {
+    "build": "npm run clean && tsc",
     "clean": "rimraf dist",
-    "init": "rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c",
-    "watch": "rollup -c -w"
+    "init": "rimraf dist && rimraf node_modules && rimraf package-lock.json",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "commander": "^9.3.0",
     "rlang-grammar": "*",
     "rlang-kernel": "*",
     "rlang-loader": "*"
-  }
+  },
+  "umd": "./dist/index.umd.js"
 }

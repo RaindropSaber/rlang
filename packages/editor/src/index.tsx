@@ -1,9 +1,9 @@
-import { createRoot, hydrateRoot } from 'react-dom/client';
-import Editor from './View/Editor';
+import { createRoot } from 'react-dom/client';
+import { T_AST } from 'rlang-grammar';
 import Model from './Model/Editor';
 import EditorContext from './Store/Context';
 import { T_Edeitor_Config } from './Types';
-import { T_AST } from 'rlang-grammar';
+import Editor from './View/Editor';
 
 export default class RlangEditor {
   config: T_Edeitor_Config;
@@ -19,7 +19,7 @@ export default class RlangEditor {
     );
   }
   start() {
-    return new Promise((r) => this.model.isReady(() => r(this)));
+    return new Promise((r) => this.model.init(() => r(this)));
   }
   render(ast: T_AST) {
     this.model.render(ast);

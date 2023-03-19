@@ -1,8 +1,7 @@
-import { T_Node, NodeType, T_Port, RuntimeEnv, PortType, T_JSON } from 'rlang-grammar';
-import Node from './Node';
+import { T_Port } from 'rlang-grammar';
+import { BehaviorSubject as Subject } from 'rxjs';
 import Context from './Context';
-import getId from './utils/getId';
-import { Subject } from 'rxjs';
+import Node from './Node';
 
 export default class Port<T_PortDTO> {
   $subject: Subject<Context<T_PortDTO>>;
@@ -21,7 +20,7 @@ export default class Port<T_PortDTO> {
   }
   constructor(option: T_Port) {
     this.option = option;
-    this.$subject = new Subject<Context<T_PortDTO>>();
+    this.$subject = new Subject<Context<T_PortDTO>>(new Context());
   }
 
   public emit(ctx: Context<T_PortDTO>) {

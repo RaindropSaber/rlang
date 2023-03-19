@@ -1,15 +1,4 @@
-import {
-  T_Node,
-  T_Pipe,
-  T_Package,
-  NodeType,
-  T_Port,
-  RuntimeEnv,
-  PortType,
-  T_JSON,
-  T_AST,
-  PackageType,
-} from 'rlang-grammar';
+import { T_AST, T_Node, T_Package, T_Pipe } from 'rlang-grammar';
 import Node from './Node';
 import Pipe from './Pipe';
 
@@ -20,18 +9,18 @@ export default class Graph {
   pipeInsMap!: Map<T_Pipe['id'], Pipe>;
   packageMap!: Map<string, typeof Node | typeof Pipe>;
 
-  private sort(nodeInsList: Node<any>[]) {
-    return nodeInsList.reduce((sortList, node) => {
-      node.nodeType === NodeType.R ? sortList.push(node) : sortList.unshift(node);
-      return sortList;
-    }, [] as Node<any>[]);
-  }
+  // private sort(nodeInsList: Node<any>[]) {
+  //   return nodeInsList.reduce((sortList, node) => {
+  //     node.nodeType === NodeType.R ? sortList.push(node) : sortList.unshift(node);
+  //     return sortList;
+  //   }, [] as Node<any>[]);
+  // }
 
-  injectPackage(packageName: T_Package<PackageType>['name'], packageContext: typeof Node | typeof Pipe) {
+  injectPackage(packageName: T_Package['name'], packageContext: typeof Node | typeof Pipe) {
     this.packageMap.set(packageName, packageContext);
   }
 
-  requirePackage(packageName: T_Package<PackageType>['name']) {
+  requirePackage(packageName: T_Package['name']) {
     return this.packageMap.get(packageName);
   }
 
@@ -90,8 +79,11 @@ export default class Graph {
   }
   start() {
     this.init();
-    this.sort([...this.nodeInsMap.values()]).forEach((node) => {
+    [...this.nodeInsMap.values()].forEach((node) => {
       node.ready(node.$I, node.$O);
     });
+    // this.sort([...this.nodeInsMap.values()]).forEach((node) => {
+    //   node.ready(node.$I, node.$O);
+    // });
   }
 }

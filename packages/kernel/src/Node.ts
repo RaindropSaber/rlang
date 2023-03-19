@@ -1,18 +1,21 @@
-import { T_Node, T_Pipe, NodeType, T_Package, T_Port, RuntimeEnv, PortType, T_JSON, PackageType, T_NodePackage } from 'rlang-grammar';
-import Port from './Port';
-import Graph from './Graph';
+import { PortType, T_Node, T_Package, T_Port } from 'rlang-grammar';
 import Context from './Context';
+import Graph from './Graph';
+import Port from './Port';
 
 type T_NodeOption = Pick<T_Node, 'id' | 'attribute' | 'ports'>;
 
 type T_PortMap<K> = Map<keyof K, Port<Get<K, keyof K>>>;
 type Get<T, K> = K extends keyof T ? T[K] : never;
-type DefaultPortsDTO = { [PortType.I]: { [portId: string]: {} }; [PortType.O]: { [portId: string]: {} } };
+type DefaultPortsDTO = {
+  [PortType.I]: { [portId: string]: {} };
+  [PortType.O]: { [portId: string]: {} };
+};
 export type $I<G extends DefaultPortsDTO> = <T extends keyof G[PortType.I]>(id: T) => Port<Get<G[PortType.I], T>>;
 export type $O<G extends DefaultPortsDTO> = <T extends keyof G[PortType.O]>(id: T) => Port<Get<G[PortType.O], T>>;
 
 export default class Node<G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO> {
-  static meta: T_NodePackage;
+  static meta: T_Package;
   option: T_NodeOption;
   graph!: Graph;
   ports!: Port<Get<G_PortsDTO[PortType], keyof G_PortsDTO[PortType]>>[];
@@ -24,20 +27,11 @@ export default class Node<G_PortsDTO extends DefaultPortsDTO = DefaultPortsDTO> 
   get meta() {
     return (this.constructor as typeof Node).meta;
   }
-  get type() {
-    return this.meta.type;
-  }
-  get nodeType() {
-    return this.meta.nodeType;
-  }
+  // get type() {
+  //   return this.meta.type;
+  // }
   get name() {
     return this.meta.name;
-  }
-  get desc() {
-    return this.meta.desc;
-  }
-  get env() {
-    return this.meta.env;
   }
   get id() {
     return this.option.id;

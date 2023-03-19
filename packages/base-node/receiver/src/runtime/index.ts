@@ -1,5 +1,5 @@
+import { NodeType, PortType, RuntimeEnv } from 'rlang-grammar';
 import { Node, Port } from 'rlang-kernel';
-import { NodeType, RuntimeEnv, PortType } from 'rlang-grammar';
 import { T_PortDTO } from '../index';
 
 type G_PORT<G_PortsDTO> = Port<Pick<G_PortsDTO, keyof G_PortsDTO>[keyof G_PortsDTO]>;

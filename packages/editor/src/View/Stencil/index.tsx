@@ -1,7 +1,6 @@
-import React, { createRef, useEffect, useRef, useState, useContext, ElementRef } from 'react';
 import { Drawer } from 'antd';
-import Model from '../../Model/Editor';
 import { observer } from 'mobx-react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import EditorContext from '../../Store/Context';
 import './index.styl';
@@ -15,13 +14,13 @@ const DrawerContainer = styled.div``;
 
 const Stencil: React.FC = observer(() => {
   const [isDrawerDOMInit, setDrawerDOMInit] = useState(false);
-  const editor = useContext(EditorContext);
+  const model = useContext(EditorContext);
   const drawerDOM = useRef<HTMLDivElement>(null);
   const stencilDOM = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setDrawerDOMInit(true);
-    if (stencilDOM.current) editor.setStencilDOM(stencilDOM.current);
+    if (stencilDOM.current) model.setStencilDOM(stencilDOM.current);
   }, [isDrawerDOMInit]);
 
   return (
@@ -31,8 +30,8 @@ const Stencil: React.FC = observer(() => {
         <Drawer
           title='Basic Drawer'
           placement='left'
-          onClose={() => editor.state.setStencilStatus(false)}
-          open={editor.state.isStencilEnabled.get()}
+          onClose={() => model.state.setStencilStatus(false)}
+          open={model.state.isStencilEnabled.get()}
           getContainer={() => drawerDOM.current!}
           rootClassName={'rlang-drawer-mask'}
           closable={false}

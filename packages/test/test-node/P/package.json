@@ -1,0 +1,33 @@
+{
+  "name": "rlang-node-basepipe",
+  "version": "0.0.0",
+  "description": "rlang runs the kernel",
+  "homepage": "",
+  "license": "MIT",
+  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
+  "type": "module",
+  "exports": {
+    "require": "./lib/index.cjs",
+    "import": "./lib/index.mjs",
+    "umd": "./lib/index.umd.js",
+    "types": "./lib/types/index.d.ts",
+    "default": "./lib/index.mjs"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "browser": "./lib/index.mjs",
+  "types": "./lib/types/runtime/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
+    "clean": "rimraf lib",
+    "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
+    "watch": "rollup -c -w --bundleConfigAsCjs"
+  },
+  "dependencies": {
+    "rlang-grammar": "*",
+    "rlang-kernel": "*"
+  }
+}

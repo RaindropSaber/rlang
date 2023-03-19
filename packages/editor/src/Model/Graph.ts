@@ -1,12 +1,12 @@
-import Editor from './Editor';
 import { Graph as X6Graph } from '@antv/x6';
 import { Options } from '@antv/x6/lib/graph/options';
+import Editor from './Editor';
 
-import { Snapline } from '@antv/x6-plugin-snapline';
 import { Clipboard } from '@antv/x6-plugin-clipboard';
-import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { History } from '@antv/x6-plugin-history';
+import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { Selection } from '@antv/x6-plugin-selection';
+import { Snapline } from '@antv/x6-plugin-snapline';
 
 // interface T_X6JSON {
 //   cells: Cell.Properties[];
@@ -76,14 +76,12 @@ export default class Graph extends X6Graph {
         // showEdgeSelectionBox: true,
       })
     );
-    this.init();
-  }
-
-  init() {
     this.initKeyboardEvent();
     this.initSelectEvent();
     this.initEdgeMoveEvent();
   }
+
+  init() {}
 
   private initKeyboardEvent() {
     this.bindKey('meta+a', () => {

@@ -1,21 +1,21 @@
-import React from 'react';
-import { message } from 'antd';
+import {
+  BoldOutlined,
+  DeleteOutlined,
+  ItalicOutlined,
+  RedoOutlined,
+  StrikethroughOutlined,
+  UnderlineOutlined,
+  UndoOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons';
 import { Menu, Toolbar } from '@antv/x6-react-components';
 import '@antv/x6-react-components/es/menu/style/index.css';
 import '@antv/x6-react-components/es/toolbar/style/index.css';
-import {
-  ZoomInOutlined,
-  ZoomOutOutlined,
-  RedoOutlined,
-  UndoOutlined,
-  DeleteOutlined,
-  BoldOutlined,
-  ItalicOutlined,
-  StrikethroughOutlined,
-  UnderlineOutlined,
-} from '@ant-design/icons';
-import EditorContext from '../Store/Context';
+import { message } from 'antd';
 import { observer } from 'mobx-react';
+import React from 'react';
+import EditorContext from '../Store/Context';
 
 const Item = Toolbar.Item;
 const Group = Toolbar.Group;

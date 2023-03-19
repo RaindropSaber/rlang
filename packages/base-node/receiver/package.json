@@ -2,9 +2,9 @@
   "name": "rlang-node-receiver",
   "version": "0.0.0",
   "description": "rlang runs the kernel",
-  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
   "homepage": "",
   "license": "MIT",
+  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "watch": "tsc -w"
   },
   "devDependencies": {}
 }

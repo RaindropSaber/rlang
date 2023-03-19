@@ -1,11 +1,11 @@
-import { T_Node, T_Pipe, T_Package, NodeType, T_Port, RuntimeEnv, PortType, T_JSON, PackageType, T_PipePackage } from 'rlang-grammar';
-import Port from './Port';
+import { T_Package, T_Pipe } from 'rlang-grammar';
 import Graph from './Graph';
+import Port from './Port';
 
 type T_PipeOption = Pick<T_Pipe, 'id' | 'attribute'>;
 
 export default class Pipe {
-  static meta: T_PipePackage;
+  static meta: T_Package;
   option: T_PipeOption;
   graph!: Graph;
   get meta() {
@@ -16,12 +16,6 @@ export default class Pipe {
   }
   get name() {
     return this.meta.name;
-  }
-  get desc() {
-    return this.meta.desc;
-  }
-  get env() {
-    return this.meta.env;
   }
   constructor(option: T_PipeOption) {
     this.option = option;

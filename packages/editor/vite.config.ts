@@ -1,7 +1,7 @@
-import { defineConfig, UserConfigExport } from 'vite';
 import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
 import path from 'path';
+import { defineConfig, UserConfigExport } from 'vite';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
   const defaultConfig: UserConfigExport = {

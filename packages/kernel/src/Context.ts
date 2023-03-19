@@ -1,6 +1,4 @@
-import { T_Node, NodeType, T_Port, RuntimeEnv, PortType, T_JSON } from 'rlang-grammar';
 import Port from './Port';
-import Node from './Node';
 import getId from './utils/getId';
 
 export default class Context<T_PortDTO> {
@@ -26,9 +24,6 @@ export default class Context<T_PortDTO> {
 
   public to<T extends Port<T_PortDTO>>(port: T) {
     port && port.emit(this);
-  }
-  public dfff(port: T_PortDTO) {
-    // port && port.emit(this);
   }
   getPrev() {
     return this.#prev;
