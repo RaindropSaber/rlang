@@ -1,9 +1,8 @@
 import fs from 'fs';
-import { T_AST } from 'rlang-grammar';
-import { Graph, Pipe } from 'rlang-kernel';
-import RlangLoader, { cjs } from 'rlang-loader';
-import path from 'path';
 import Module from 'module';
+import path from 'path';
+import { Graph } from 'rlang-kernel';
+import { cjs } from 'rlang-loader';
 
 export default (rlangFileName: string): Graph => {
   // TODO: AST 检测

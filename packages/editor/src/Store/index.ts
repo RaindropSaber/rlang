@@ -1,6 +1,6 @@
-import { makeAutoObservable, observable, action } from "mobx";
-import { Cell } from "@antv/x6";
-import Model from "../Model/Editor";
+import { Cell } from '@antv/x6';
+import { action, makeAutoObservable, observable } from 'mobx';
+import Model from '../Model/Editor';
 
 export default class EditorStore {
   public isStencilEnabled = observable.box(true);

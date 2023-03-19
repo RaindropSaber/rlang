@@ -1,29 +1,29 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import rollupTypescript from "rollup-plugin-typescript2";
-import json from "@rollup/plugin-json";
-import externals from "rollup-plugin-node-externals";
-import pkg from "./package.json";
-import terser from "@rollup/plugin-terser";
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
+import externals from 'rollup-plugin-node-externals';
+import rollupTypescript from 'rollup-plugin-typescript2';
+import pkg from './package.json';
 
 const getConfig = () => {
   const config = {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: [
       {
         file: pkg.exports.require,
-        format: "cjs",
+        format: 'cjs',
         sourcemap: true,
       },
       {
         file: pkg.exports.import,
-        format: "es",
+        format: 'es',
         sourcemap: true,
       },
       {
         name: pkg.name,
         file: pkg.exports.umd,
-        format: "umd",
+        format: 'umd',
         sourcemap: true,
         plugins: [terser()],
       },

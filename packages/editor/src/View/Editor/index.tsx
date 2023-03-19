@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import Toolbar from "../Toolbar";
-import Menubar from "../Menubar";
-import Stencil from "../Stencil";
-import Graph from "../Graph";
-import Panel from "../Panel";
-import EditorContext from "../../Store/Context";
-import "antd/dist/reset.css";
-import "./index.styl";
+import 'antd/dist/reset.css';
+import { observer } from 'mobx-react';
+import React from 'react';
+import styled from 'styled-components';
+import Graph from '../Graph';
+import Panel from '../Panel';
+import Stencil from '../Stencil';
+import Toolbar from '../Toolbar';
+import './index.styl';
 
 const Container = styled.div`
   display: flex;

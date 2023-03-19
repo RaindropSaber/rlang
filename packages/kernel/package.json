@@ -2,21 +2,14 @@
   "name": "rlang-kernel",
   "version": "0.0.1",
   "description": "",
-  "author": "Yahaha <raindropsaber@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/RaindropSaber/rlang.git",
     "directory": "packages/kernel"
   },
   "license": "MIT",
-  "files": [
-    "lib"
-  ],
+  "author": "Yahaha <raindropsaber@gmail.com>",
   "type": "module",
-  "main": "./lib/node/index.cjs",
-  "module": "./lib/node/index.mjs",
-  "browser": "./lib/browser/index.mjs",
-  "types": "./lib/types/index.d.ts",
   "exports": {
     "node": {
       "require": "./lib/node/index.cjs",
@@ -30,10 +23,17 @@
     "types": "./lib/types/index.d.ts",
     "default": "./lib/node/index.mjs"
   },
+  "main": "./lib/node/index.cjs",
+  "module": "./lib/node/index.mjs",
+  "browser": "./lib/browser/index.mjs",
+  "types": "./lib/types/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs && rollup -c --bundleConfigAsCjs --environment umd",
     "clean": "rimraf lib",
     "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c --bundleConfigAsCjs && rollup -c --bundleConfigAsCjs --environment umd",
     "watch": "rollup -c -w --bundleConfigAsCjs & rollup -c -w --bundleConfigAsCjs --environment umd"
   },
   "dependencies": {

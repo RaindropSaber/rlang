@@ -2,21 +2,14 @@
   "name": "rlang-loader",
   "version": "0.0.1",
   "description": "",
-  "author": "Yahaha <raindropsaber@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/RaindropSaber/rlang.git",
     "directory": "packages/loader"
   },
   "license": "MIT",
-  "files": [
-    "lib"
-  ],
+  "author": "Yahaha <raindropsaber@gmail.com>",
   "type": "module",
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.mjs",
-  "browser": "./lib/index.mjs",
-  "types": "./lib/types/index.d.ts",
   "exports": {
     "require": "./lib/index.cjs",
     "import": "./lib/index.mjs",
@@ -24,10 +17,17 @@
     "types": "./lib/types/index.d.ts",
     "default": "./lib/index.mjs"
   },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "browser": "./lib/index.mjs",
+  "types": "./lib/types/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
     "clean": "rimraf lib",
     "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
     "watch": "rollup -c -w --bundleConfigAsCjs"
   },
   "dependencies": {

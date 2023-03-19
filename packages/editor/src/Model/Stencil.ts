@@ -1,53 +1,47 @@
-import { Graph as X6Graph, Shape, Model, Cell, CellView, Node } from "@antv/x6";
-import { Stencil as X6Stencil } from "@antv/x6-plugin-stencil";
-import {
-  PackageType,
-  T_AST,
-  T_NodePackage,
-  T_Package,
-  PortType,
-} from "rlang-grammar";
-import Editor from "./Editor";
-import Graph from "./Graph";
-import { register } from "@antv/x6-react-shape";
-import { T_Stencil } from "../Types";
-import BaseNode from "../View/BaseNode";
-import loadPkg from "../Tools/loadScript";
+import { Node } from '@antv/x6';
+import { Stencil as X6Stencil } from '@antv/x6-plugin-stencil';
+import { register } from '@antv/x6-react-shape';
+import { PortType, T_NodePackage } from 'rlang-grammar';
+import loadPkg from '../Tools/loadScript';
+import { T_Stencil } from '../Types';
+import BaseNode from '../View/BaseNode';
+import Editor from './Editor';
+import Graph from './Graph';
 
 const defaultPortsGroupLayout = {
   [PortType.I]: {
     position: {
-      name: "left",
+      name: 'left',
     },
     zIndex: 2,
     label: {
-      position: "right",
+      position: 'right',
     },
     attrs: {
       circle: {
         r: 6,
         magnet: true,
-        stroke: "#31d0c6",
+        stroke: '#31d0c6',
         strokeWidth: 2,
-        fill: "#fff",
+        fill: '#fff',
       },
     },
   },
   [PortType.O]: {
     position: {
-      name: "right",
+      name: 'right',
     },
     label: {
-      position: "left",
+      position: 'left',
     },
     zIndex: 2,
     attrs: {
       circle: {
         r: 6,
         magnet: true,
-        stroke: "#31d0c6",
+        stroke: '#31d0c6',
         strokeWidth: 2,
-        fill: "#fff",
+        fill: '#fff',
       },
     },
   },
@@ -88,9 +82,7 @@ export default class Stencil extends X6Stencil {
     this.editor = editor;
     this.graph = editor.graph;
   }
-  loadStencil(groups: {
-    [groupName: string]: (Node<Node.Properties> | Node.Metadata)[];
-  }) {
+  loadStencil(groups: { [groupName: string]: (Node<Node.Properties> | Node.Metadata)[] }) {
     Object.keys(groups).forEach((groupName) => {
       this.load(groups[groupName], groupName);
     });
@@ -98,7 +90,7 @@ export default class Stencil extends X6Stencil {
   private registerShape(stencil: T_Stencil) {
     if (this.nodeShapeMap.has(stencil.shape)) return;
     register({
-      shape: "BaseNode",
+      shape: 'BaseNode',
       width: 150,
       height: 100,
       component: BaseNode,
@@ -106,8 +98,8 @@ export default class Stencil extends X6Stencil {
   }
   private async loadPkg(pkg: T_NodePackage): Promise<T_Stencil> {
     return {
-      groupName: pkg.group || "基础类型",
-      shape: pkg.shape || "BaseShape",
+      groupName: pkg.group || '基础类型',
+      shape: pkg.shape || 'BaseShape',
       component: BaseNode,
     };
   }

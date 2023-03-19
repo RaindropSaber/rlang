@@ -1,4 +1,4 @@
-import { FC, Component } from "react";
+import { Component, FC } from 'react';
 
 export interface T_Edeitor_Config {
   container: HTMLElement;

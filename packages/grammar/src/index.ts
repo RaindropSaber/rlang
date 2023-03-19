@@ -1,24 +1,24 @@
 export enum PackageType {
-  Node = "Node",
-  Pipe = "Pipe",
+  Node = 'Node',
+  Pipe = 'Pipe',
 }
 export enum PackageMode {
-  Node = "Node",
-  GRAPH = "GRAPH",
+  Node = 'Node',
+  GRAPH = 'GRAPH',
 }
 export enum NodeType {
-  R = "R",
-  T = "T",
-  W = "W",
-  M = "M",
+  R = 'R',
+  T = 'T',
+  W = 'W',
+  M = 'M',
 }
 export enum PortType {
-  I = "IN",
-  O = "OUT",
+  I = 'IN',
+  O = 'OUT',
 }
 export enum RuntimeEnv {
-  Node = "Node",
-  Browser = "Browser",
+  Node = 'Node',
+  Browser = 'Browser',
 }
 // type T_JSON_BASE = string | boolean | number | null;
 // type T_JSON_OBJECT = {
@@ -52,7 +52,7 @@ export declare type T_Package = {
 
 export declare interface T_Node {
   id?: string;
-  packageName: T_Package["name"];
+  packageName: T_Package['name'];
   attribute: JSON;
   position?: {
     x: string;
@@ -65,15 +65,15 @@ export declare interface T_Node {
 
 export declare type T_Pipe = {
   id?: string;
-  packageName: T_Package["name"];
+  packageName: T_Package['name'];
   attribute: JSON;
   [PortType.I]: {
-    nodeId: T_Node["id"];
-    portId: T_Port["id"];
+    nodeId: T_Node['id'];
+    portId: T_Port['id'];
   };
   [PortType.O]: {
-    nodeId: T_Node["id"];
-    portId: T_Port["id"];
+    nodeId: T_Node['id'];
+    portId: T_Port['id'];
   };
   view?: any;
 };

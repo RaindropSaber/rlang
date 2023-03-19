@@ -1,13 +1,7 @@
-import React, {
-  createRef,
-  useEffect,
-  useRef,
-  useState,
-  useContext,
-} from "react";
-import EditorContext from "../Store/Context";
-import { observer } from "mobx-react";
-import styled from "styled-components";
+import { observer } from 'mobx-react';
+import React, { useContext, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import EditorContext from '../Store/Context';
 
 const GraphContainer = styled.div`
   flex: 1;

@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe, test } from '@jest/globals';
 import { Graph } from 'rlang-kernel';
 
 const ast = {
@@ -224,10 +224,10 @@ const ast = {
   ],
 };
 
+import P from 'rlang-node-basepipe';
 import R from 'rlang-node-receiver';
 import T from 'rlang-node-transfer';
 import W from 'rlang-node-write';
-import P from 'rlang-node-basepipe';
 
 // const R = require('rlang-node-receiver').default;
 // const T = require('rlang-node-transfer').default;

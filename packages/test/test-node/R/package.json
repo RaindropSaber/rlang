@@ -2,14 +2,10 @@
   "name": "rlang-node-receiver",
   "version": "0.0.0",
   "description": "rlang runs the kernel",
-  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
   "homepage": "",
   "license": "MIT",
+  "author": "jiabin.jb <jiabin.jb@alibaba-inc.com>",
   "type": "module",
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.mjs",
-  "browser": "./lib/index.mjs",
-  "types": "./lib/types/runtime/index.d.ts",
   "exports": {
     "require": "./lib/index.cjs",
     "import": "./lib/index.mjs",
@@ -17,10 +13,14 @@
     "types": "./lib/types/index.d.ts",
     "default": "./lib/index.mjs"
   },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "browser": "./lib/index.mjs",
+  "types": "./lib/types/runtime/index.d.ts",
   "scripts": {
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
     "clean": "rimraf lib",
     "init": "rimraf lib && rimraf node_modules && rimraf package-lock.json",
-    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
     "watch": "rollup -c -w --bundleConfigAsCjs"
   },
   "dependencies": {

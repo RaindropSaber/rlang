@@ -1,8 +1,8 @@
-import { NodeType, RuntimeEnv, PortType } from "rlang-grammar";
+import { NodeType, PortType, RuntimeEnv } from 'rlang-grammar';
 
 export const meta = {
-  name: "RRRRR",
-  desc: "RRRRR",
+  name: 'RRRRR',
+  desc: 'RRRRR',
   type: NodeType.R,
   env: [RuntimeEnv.Node, RuntimeEnv.Browser],
 };

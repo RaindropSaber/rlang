@@ -1,7 +1,7 @@
-import { T_Node, NodeType, T_Port, RuntimeEnv, PortType } from "rlang-grammar";
-import Node from "./Node";
-import Context from "./Context";
-import { BehaviorSubject as Subject } from "rxjs";
+import { T_Port } from 'rlang-grammar';
+import { BehaviorSubject as Subject } from 'rxjs';
+import Context from './Context';
+import Node from './Node';
 
 export default class Port<T_PortDTO> {
   $subject: Subject<Context<T_PortDTO>>;
