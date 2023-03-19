@@ -19,14 +19,14 @@ interface T_RPortDTO {
   };
 }
 export default class R extends Node<T_RPortDTO> {
-  static meta = {
-    name: 'RRRRR',
-    type: NodeType.R,
-    desc: 'RRRRR',
-    env: [RuntimeEnv.Node],
-  };
+  // static meta = {
+  //   name: 'RRRRR',
+  //   type: NodeType.R,
+  //   desc: 'RRRRR',
+  //   env: [RuntimeEnv.Node],
+  // };
   ready($I: T_$I<T_RPortDTO>, $O: T_$O<T_RPortDTO>) {
     console.log('R ready');
-    this.send({ hello2: 'world' }).to($O('out'));
+    this.send({ hello2: 'world' }).to($O('out') as any);
   }
 }

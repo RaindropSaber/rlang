@@ -49,7 +49,7 @@ export const cjs = (source: string) => {
       (acc, item, index) => {
         const pkgStatementId = 'DependPackage_' + index;
         acc.inj.push(`graph.injectPackage('${item.name}',${pkgStatementId})`);
-        acc.imp.push(`const ${pkgStatementId} = require('${item.name}').default;`);
+        acc.imp.push(`const ${pkgStatementId} = require('${item.name}');`);
         return acc;
       },
       { imp: [], inj: [] } as T_packageTPL

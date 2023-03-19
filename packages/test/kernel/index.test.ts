@@ -242,9 +242,9 @@ graph.injectPackage('rlang-node-transfer', T as any);
 graph.injectPackage('rlang-node-write', W as any);
 graph.injectPackage('rlang-node-basepipe', P as any);
 
-// graph.setApp({});
+graph.setApp({});
 
-// graph.start();
+graph.start();
 
 describe('sum module', () => {
   test('adds 1 + 2 to equal 3', () => {});
